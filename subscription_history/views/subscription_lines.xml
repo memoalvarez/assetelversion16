@@ -1,0 +1,24 @@
+<odoo>
+ <record id="sale_subscription_line_tree" model="ir.ui.view">
+    <field name="name">sale.subscription.line.tree</field> 
+    <field name="model">sale.subscription.line</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="analytic_account_id" optional="show"/>
+        <field name="empresarial_group" optional="show"/>
+        <field name="business_name" optional="show"/>
+        <field name="subscription_template" optional="show"/>
+        <field name="service_number" optional="show"/>
+        <field name="product_id" optional="show"/>
+        <field name="name" optional="show"/>
+        <field name="site" optional="show"/>
+        <field name="quantity" optional="show"/>
+        <field name="uom_id" optional="show"/>
+        <field name="price_unit" optional="show"/>
+        <field name="discount" optional="show"/>
+        <field name="price_subtotal" optional="show"/>
+      </tree>
+    </field> 
+  </record>
+
+  </odoo>

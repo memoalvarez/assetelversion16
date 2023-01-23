@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_order_form_inherit_sale_discounts" model="ir.ui.view">
+    <field name="name">sale.order.form.inherit.sale.discounts</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//button[@name='action_confirm']" position="after">
+        <field name="approved_order" invisible="1"/>
+        <button name="checking_action" class="btn-primary" string="Solicitar aprobación" type="object" attrs="{'invisible': ['|', ('approved_order', '=', True), ('state', '!=', 'draft')]}" groups="access_rights_assetel.ventas_solicitud_aprobacion_presupuesto"/>
+        <button name="approved_action" class="btn-primary" string="Aprobar" type="object" attrs="{'invisible': [('approved_order', '=', True)]}" groups="access_rights_assetel.ventas_aprobacion_presupuesto"/>
+        <button name="rejected_action" class="btn-primary" string="Rechazar" type="object" attrs="{'invisible': [('approved_order', '=', True)]}" groups="access_rights_assetel.ventas_aprobacion_presupuesto"/>
+      </xpath>
+
+      <xpath expr="//div[@class='oe_button_box']" position="after">
+          <div class="badge-pill badge-warning float-right" attrs="{'invisible': [('approved_order', '=', True)]}">Esperando aprobación</div>
+      </xpath>
+
+      <xpath expr="//button[@name='action_confirm']" position="attributes">
+        <attribute name="attrs"/>
+      </xpath>
+
+      <xpath expr="//form[1]/header[1]/button[@name='action_confirm'][2]" position="replace"/>
+
+      <xpath expr="//button[@id='action_confirm']" position="attributes">
+        <attribute name="attrs">{'invisible': ['|', ('approved_order', '=', False), ('state', 'not in', ['draft', 'sent'])]}</attribute>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

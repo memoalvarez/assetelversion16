@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="get_subscription_lines_view" model="ir.actions.act_window">
+        <field name="name">Lineas de suscripción</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.subscription.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea un nueva linea de suscripción
+            </p>
+        </field>
+    </record>
+
+    <record id="subscription_history.sale_subscription_lines_menu" model="ir.ui.menu">
+        <field name="action" ref="subscription_history.get_subscription_lines_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Lineas de suscripción</field>
+        <field name="parent_id" ref="sale_subscription.menu_sale_subscription_report"/>
+        <field name="sequence">2</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+</odoo>

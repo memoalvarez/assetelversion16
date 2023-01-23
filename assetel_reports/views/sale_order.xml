@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="sale_order_report_inherit_assetel_reports" inherit_id="sale.report_saleorder_document">
+        <xpath expr="/t/t/div/table/thead/tr/th[1]" position="after">
+          <th>
+            <span>Sitio</span>
+          </th>
+        </xpath>
+
+        <xpath expr="/t/t/div/table/tbody/t[2]/tr/t[1]/td[1]" position="after">
+          <td>
+            <span t-field="line.site.name"/>
+          </td>
+        </xpath>
+
+        <xpath expr="//div[@class ='row mt32 mb32']" position="inside">
+          <div t-if="doc.pricelist_id" class="col-auto mw-100 mb-2">
+              <strong>Plazo de contrato:</strong>
+              <p class="m-0" t-field="doc.pricelist_id.name"/>
+          </div>
+        </xpath>
+    </template>
+
+</odoo>

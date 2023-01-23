@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="installed_services_inherit_service_unbuild" model="ir.ui.view">
+    <field name="name">installed.services.inherit.service.unbuild</field>
+    <field name="model">installed.services</field>
+    <field name="inherit_id" ref="installed_services.installed_services_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage']" position="before">
+            <button name="new_unbuild" string="Solicitar baja" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('stage', '=', 'disabled'), ('unbuild_task_id', '!=', False)]}" groups="access_rights_assetel.installed_services_baja"/>
+        </xpath>
+
+        <xpath expr="//button[@name='open_service_configuration']" position="before">
+            <button type="object" name="action_view_task_unbuild" class="oe_stat_button" icon="fa-arrow-down" attrs="{'invisible': [('unbuild_task_id', '=', False)]}" string="Baja"/>
+            <field name="unbuild_task_id" invisible="1"/>
+        </xpath>
+
+     
+    </field>
+  </record>
+</odoo>

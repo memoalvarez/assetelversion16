@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA APPRAISAL.PERIOD -->
+
+  <record id="appraisal_period_tree" model="ir.ui.view">
+    <field name="name">appraisal.period.tree</field> 
+    <field name="model">appraisal.period</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="empleado"/>
+        <field name="supervisor"/>
+        <field name="stage"/>
+      </tree>
+    </field> 
+  </record>
+
+  <!-- VISTA FORMULARIO PARA APPRAISAL.PERIOD-->
+
+  <record id="appraisal_period_form" model="ir.ui.view"> 
+    <field name="name">appraisal.period.form</field> 
+    <field name="model">appraisal.period</field>
+    <field name="arch" type="xml">
+      <form string="Nueva Evaluacion">
+          <header>
+              <field name="employee_status" invisible="1"/>
+              <button name="action_approval_request" type="object" string="Solicitar aprobación" class="oe_highlight" attrs="{'invisible': ['|', ('stage', '!=', 'new'), ('employee_status', '!=', 'empleado')]}"/>
+              <button name="action_enviar_evaluacion" type="object" string="Enviar a evaluación" attrs="{'invisible': ['|', ('stage', '!=', 'proceso'), ('employee_status', '!=', 'empleado')]}"/>
+              <button name="action_return_new" type="object" string="Regresar a nuevo" attrs="{'invisible': ['|', ('stage', '!=', 'proceso'), ('employee_status', '!=', 'supervisor')]}"/>
+              <button name="action_return_proceso" type="object" string="Regresar a proceso" attrs="{'invisible': ['|', ('stage', '!=', 'evaluacion'), ('employee_status', '!=', 'empleado')]}"/>
+              <button name="action_return_evaluacion" type="object" string="Regresar a evaluación" attrs="{'invisible': ['|', ('stage', '!=', 'cerrado'), ('employee_status', '!=', 'supervisor')]}"/>
+              <button name="action_cerrar_evaluacion" type="object" string="Cerrar evaluación" attrs="{'invisible': ['|', ('stage', '!=', 'evaluacion'), ('employee_status', '!=', 'supervisor')]}"/>
+              <button name="action_report_send" string="Enviar por correo electrónico" type="object" class="oe_highlight" attrs="{'invisible':['|', ('stage','!=','cerrado'), ('employee_status', '!=', 'supervisor')]}"/>
+              <field name="user_status" invisible="1"/>
+              <button name="action_approve" string="Aprobar" type="object" attrs="{'invisible':[('user_status','!=','pending')]}" effect="{'message':'¡Aprobado!','fadeout':'medium'}"/>
+              <button name="action_refuse" string="Rechazar" type="object" attrs="{'invisible':[('user_status','!=','pending')]}"/>
+              <field name="stage" widget="statusbar"/>
+          </header>
+          <sheet>
+              <div class="oe_button_box" name="button_box">
+              </div>
+              <group>
+                <div class="oe_title pr-0">
+                  <h1 class="d-flex flex-row justify-content-between">
+                    <field name="name" class="o_task_name text-truncate" readonly="1" placeholder="Nombre"/>
+                  </h1>
+                </div>
+              </group>                        
+
+              <group>
+                <group>
+                  <field name="empleado" required="1"  attrs="{'readonly':['|',('stage','!=','new'),'&amp;','&amp;',('stage','=','new'),('empleado','!=',False),('employee_status','!=','empleado')]}"/>
+                  <field name="supervisor"  attrs="{'readonly':['|', ('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                </group>
+                <group>
+                  <field name="date_start" required="1"  attrs="{'readonly':['|', ('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                  <field name="date_end" required="1"  attrs="{'readonly':['|', ('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                  <field name="company_id" invisible="1"/> 
+                  <field name="current_employee" invisible="1"/> 
+                </group>
+              </group>
+              <notebook>
+                <page name="objetivos_smart" string="Objetivos Smart">
+                    <field name="appraisal_smart_lines" nolabel="1" widget="one2many_list"  attrs="{'readonly':['|','|','|','|','|','|',('employee_status','=','visitante'),('stage','=','cerrado'),'&amp;',('stage','=','new'),('employee_status','=','supervisor'),'&amp;',('stage','=','aprobacion'),('employee_status','=','empleado'),'&amp;',('stage','=','proceso'),('employee_status','=','supervisor'),'&amp;',('stage','=','evaluacion'),('employee_status','=','empleado'),'&amp;',('stage','=','aprobacion'),('employee_status','=','supervisor')]}">
+                      <tree>
+                        <field name="stage" invisible="1"/>
+                        <field name="objetivo_estrategico"/>
+                        <field name="objetivo" widget="section_and_note_text"/>
+                        <field name="ponderacion"/>
+                        <field name="resultado_esperado"/>
+                        <field name="resultado_sugerido"/>
+                        <field name="resultado_obtenido"/>
+                      </tree>
+                    </field>
+                  <group>
+                    <group>
+                      <field name="calificacion_general" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="calificacion_smart" readonly="1"/>
+                    </group>
+                  </group>
+                </page>
+                <page name="competencias" string="Competencias">
+                    <field name="appraisal_behavior_lines" nolabel="1" widget="one2many_list"  attrs="{'readonly':['|','|','|','|','|',('stage','=','new'),('stage','=','cerrado'),('employee_status','=','visitante'),'&amp;',('stage','=','aprobacion'),('employee_status','=','empleado'),'&amp;',('stage','=','proceso'),('employee_status','=','supervisor'),'&amp;',('stage','=','evaluacion'),('employee_status','=','empleado')]}">
+                      <tree>
+                        <field name="stage" invisible="1"/>
+                        <field name="competencia" widget="section_and_note_text"/>
+                        <field name="conducta" widget="section_and_note_text"/>
+                        <field name="conducta_type_empleado" string="Conducta de Actuación Empleado"/>
+                        <field name="frecuencia_type_empleado" string="Frecuencia Empleado"/>
+                        <field name="conducta_type_supervisor" string="Conducta de Actuación Supervisor"/>
+                        <field name="frecuencia_type_supervisor" string="Frecuencia Supervisor"/>
+                      </tree>
+                    </field>
+                  <group>
+                    <group>
+                    </group>
+                    <group>
+                        <field name="calificacion_behavior" readonly="1"/>
+                    </group>
+                  </group>
+                </page>
+                <page string="Comentarios y Firma">
+                  <group string="Empleado">
+                    <field name="comentario_empleado" attrs="{'readonly':['|','|','|',['employee_status','!=','empleado'],['stage','=','new'],['stage','=','aprobacion'],['stage','=','cerrado']]}"/>
+                    <field name="firma_empleado" widget="signature" width="350" height="100" attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','empleado')]}"/>
+                  </group>
+
+                  <group string="Supervisor">
+                    <field name="comentario_general" attrs="{'readonly':['|','|','|',['employee_status','!=','supervisor'],['stage','=','new'],['stage','=','aprobacion'],['stage','=','cerrado']]}"/>
+                    <field name="firma_supervisor" widget="signature" width="350" height="100" attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','supervisor')]}"/>
+                  </group>
+
+                    
+                </page>
+                <page string="Aprobador(es)" name="approvers">
+                  <field name="approver_ids" mode="tree,kanban">
+                    <tree editable="bottom" decoration-success="status=='approved'" decoration-warning="status=='pending'" decoration-danger="status=='refused'" delete="0">
+                      <field name="user_id" readonly="1" string="Aprobador" attrs="{'readonly':[('status','!=','new')]}"/>
+                      <field name="status" readonly="1" string="Estado"/>
+                      <field name="company_id" readonly="1" invisible="1"/>
+                    </tree>
+                  </field>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+
+  <!-- VISTA KANBAN PARA  APPRAISAL.PERIOD-->
+
+  <record id="appraisal_period_kanban" model="ir.ui.view">
+    <field name="name">appraisal.period.kanban</field>
+    <field name="model">appraisal.period</field>
+    <field name="arch" type="xml">
+        <kanban examples="project" archivable="false">
+            <field name="color"/>
+            <field name="message_needaction_counter"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click">
+                        <div class="oe_dropdown_kanban">
+                            <!-- dropdown menu -->
+                            <div class="o_dropdown_kanban dropdown">
+                              <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                  <span class="fa fa-ellipsis-v"/>
+                              </a>
+                              <div class="dropdown-menu" role="menu">
+                                  <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Editar</a></t>
+                                  <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Suprimir</a></t>
+                                  <ul class="oe_kanban_colorpicker" data-field="color"/>
+                              </div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                              <div class="o_kanban_record_top">
+                                <div>
+                                  <strong style="font-size: 140%"><field name="name"/></strong>
+                                </div>
+                              </div>
+                              <div class="o_kanban_record_body">
+                                Nombre:
+                                  <field name="name"/>
+                                  <br/>
+                                Empleado:
+                                  <field name="empleado"/>
+                                  <br/>
+                              </div>
+                              <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                  <field name="activity_ids" widget="kanban_activity"/>
+                                  <t t-if="record.message_needaction_counter.raw_value">
+                                      <span role="alert" class="oe_kanban_mail_new" title="Unread Messages"><i class="fa fa-comments" role="img" aria-label="Unread Messages"/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                  </t>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+  </record>
+</odoo>

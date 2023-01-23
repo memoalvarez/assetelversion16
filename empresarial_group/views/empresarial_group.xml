@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- VISTA ARBOL PARA GRUPO EMPRESARIAL -->
+
+  <record id="empresarial_group_tree" model="ir.ui.view">
+    <field name="name">empresarial.group.tree</field> 
+    <field name="model">empresarial.group</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA FORMULARIO PARA GRUPO EMPRESARIAL -->
+
+  <record id="empresarial_group_form" model="ir.ui.view"> 
+    <field name="name">empresarial.group.form</field> 
+    <field name="model">empresarial.group</field>
+    <field name="arch" type="xml">
+      <form string="Grupo Empresarial">
+        <sheet>
+            <div class="oe_title">
+                <h1>
+                    <field name="name"/>
+                </h1>
+            </div>
+
+            <group>
+                <field name="company_ids" readonly="1" />
+                <field name="sales_of__millions"/>
+                <field name="users_of_group_empresarial"/>
+                <field name="locates_of_grouo_emprearial"/>
+            </group>
+        </sheet>
+      </form>
+    </field> 
+  </record>
+
+</odoo>

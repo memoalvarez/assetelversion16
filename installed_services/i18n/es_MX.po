@@ -1,0 +1,40 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#       * sale_subscription, sale_order
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-06 12:35+0000\n"
+"PO-Revision-Date: 2020-07-06 09:35+0000\n"
+"Last-Translator: Guillermo Ruiz Alvarez <bsoftw@assetel.com>, 2020\n"
+"Language-Team: Spanish (https://www.assetel.com/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es_MX\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_subscription
+#: model:ir.model.fields,field_description:sale_subscription.field_sale_subscription__partner_id
+#, python-format
+msgid "Customer"
+msgstr "Razón social"
+
+#. module: sale
+#: model:ir.model.fields,field_description:sale.field_sale_order__partner_id
+#, python-format
+msgid "Customer"
+msgstr "Cliente/Empresa"
+
+#. module: sale_order
+#: model:ir.model.fields,field_description:sale.field_sale_order__partner_invoice_id
+#, python-format
+msgid "Invoice Address"
+msgstr "Razón social"
+
+#. module: sale_order
+#: model:ir.model.fields,field_description:sale.field_sale_order__client_order_ref
+#, python-format
+msgid "Customer Reference"
+msgstr "Diferencial"

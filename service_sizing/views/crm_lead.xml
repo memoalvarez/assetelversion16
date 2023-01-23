@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="crm_lead_inherit_service_sizing" model="ir.ui.view">
+    <field name="name">crm.lead.inherit.service.sizing</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+            <field name="sizing_stage" invisible="1"/>
+            <button name="new_sizing" string="Nuevo dimensionamiento" type="object" class="oe_highlight" attrs="{'invisible': [('sizing_stage', '=', False)]}" groups="access_rights_assetel.crm_dimensionamiento"/>
+        </xpath>
+
+        <xpath expr="//button[@name='action_schedule_meeting']" position="before">
+          <button type="object" name="action_view_task_sizing" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('sizing_task_count', '=', 0)]}">
+            <field string="Dimensionamientos" name="sizing_task_count" widget="statinfo"/>
+          </button>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="product_product_inherit_installed_services" model="ir.ui.view">
+    <field name="name">product.product.inherit.installed.services</field>
+    <field name="model">product.product</field>
+    <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='barcode']" position="after">
+        <field name="manufacturing_product" attrs="{'invisible':[('type', '!=', 'service')]}" domain="[('type', '=', 'product'), ('bom_ids', '!=', False), ('bom_ids.active', '=', True), ('bom_ids.type', '=', 'normal')]"/>
+        <field name="sale_service" attrs="{'invisible':[('type', '!=', 'product')]}" domain="[('type', '=', 'service')]"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

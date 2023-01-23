@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_subscription_inherit_service_modification" model="ir.ui.view">
+    <field name="name">sale.subscription.inherit.service.modification</field>
+    <field name="model">sale.subscription</field>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//div[@class='oe_button_box']" position="after">
+            <field name="to_modify" invisible = '1'/>
+            <div class="badge-pill badge-warning float-right" attrs="{'invisible': [('to_modify', '=', False)]}">Servicio(s) en modificación</div>
+        </xpath>
+        
+    </field>
+  </record>
+</odoo>

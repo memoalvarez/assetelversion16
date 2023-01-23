@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="service_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="header">
+                        <div style="float: left;">
+                            <img src="/service_installation/static/src/img/logo_assetel.png" alt="Assetel" width="250px"/>
+                        </div>
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660; font-weight: bold">REPORTE DE SERVICIO </td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 10px 3px 10px; color: #000000; border-radius: 15px 15px 0px 0px; border: white 1px solid"><span t-field="o.id"/> / <span t-field="o.sale_order_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660; font-weight: bold">FECHA</td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 10px 3px 10px; border: white 1px solid"><span t-field="o.date_last_stage_update" t-options="{'widget': 'date'}"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660">ORDEN DE TRABAJO</td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 10px 3px 10px; border-radius: 0px 0px 15px 15px; border: white 1px solid"><span t-field="o.mrp_production.name"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <table style="width:100%; color: #1d3660">
+                        <tr>
+                            <td style="width:5%;">Cliente:</td>
+                            <td style="border-bottom: 1pt solid #1d3660; text-align: left;width:45%"><p style="width: 300px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:black;"><span style="color:black;" t-field="o.partner_id.name"/></p></td>
+                            <td style="width:4%; margin-left: 2px">Sitio:</td>
+                            <td style="border-bottom: 1pt solid #1d3660; text-align: left;width:46%"><p style="width: 300px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:black;"><span style="color:black;" t-field="o.site.name"/></p></td>
+                        </tr>
+                        </table>
+                        <table style="width:100%; color: #1d3660">
+                        <tr>
+                            <td style="width:5%">Contacto:</td>
+                            <td style="border-bottom: 1pt solid #1d3660;color:black"></td>
+                            <td style="width:5%">Puesto:</td>
+                            <td style="border-bottom: 1pt solid #1d3660;color:black"></td>
+                            <td style="width:5%">Telefono:</td>
+                            <td style="border-bottom: 1pt solid #1d3660;color:black"></td>
+                        </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+                        <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">SERVICIO SOLICITADO:</span>
+                        </div>
+                        <table style="width:100%; text-align: center; border-bottom: 1pt solid #1d3660; color: #1d3660">
+                        <tr>
+                            <td><span style="color:black" t-field="o.name"/></td>
+                        </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 20px; margin-bottom: 0px">
+                        <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">SERVICIO REALIZADO:</span>
+                        </div>
+                        <table style="width:100%; color: #1d3660">
+                        <tr>
+                            <td  style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Instalación</td>
+                            <td style="width:33%r"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Venta</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Reparación de Infraestructura</td>
+                        </tr>
+                        <tr>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Desinstalación</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Préstamo</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Mantenimiento Correctivo</td>
+                        </tr>
+                        <tr>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Reubicación</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Demo</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Mantenimiento Preventivo</td>
+                        </tr>
+                        <tr>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Cambio configuración</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Soporte técnico por evento</td>
+                            <td style="width:33%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Otro:</td>
+                        </tr>
+                        <br>
+                        </br>
+                        </table>
+                        <table style="width:100%; background: #1d3660; color: #FFFFFF; font-weight: bold; border-radius: 15px 15px 15px 15px;">
+                        <tr style="text-align: center;">
+                            <td style="width:20%">EQUIPO</td>
+                            <td style="width:40%">MODELO</td>
+                            <td style="width:20%">No. SERIE</td>
+                            <td style="width:20%">IP</td>
+                        </tr>
+                        </table>
+                        <table style="width: 100%;text-overflow: ellipsis;table-layout:fixed;">
+                        <t t-set="count" t-value="0"/>   
+                        <t t-foreach="o.mrp_production.move_raw_ids" t-as="line">
+                            <t t-foreach="line.move_line_ids" t-as="serie">
+                                <tr>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"><p style="width: 119px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span t-field="serie.product_id.categ_id.name"/></p></td>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:40%;overflow: hidden;display: inline-block;white-space: nowrap;"><p style="width: 238px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span t-field="serie.product_id.name"/></p></td>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"><p style="width: 119px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span t-field="serie.lot_id.name"/></p></td>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"> </td>
+                                </tr>
+                             <t t-set="count" t-value="count + 1"/>   
+                            </t>
+                        </t>
+                        <t t-set="resta" t-value="8 - count"/>
+                        <t t-foreach="range(resta)" t-as="i">
+                            <tr style="height:20px"> 
+                                <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                            </tr>
+                        </t>
+                        </table>
+                        <br>
+                        </br>
+                        <table style="width: 100%; ">
+                        <tr>
+                            <td style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold; text-align: center; margin-top: 20px;">OBSERVACIONES:</td>
+                        </tr>
+                        <tr>
+                            <td style="border-radius: 15px 15px 15px 15px; background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;height:80px"> </td>
+                        </tr>
+                        </table>
+                        <table style="width:80%; color: #1d3660; margin: 0 auto; text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                        <tr style="">
+                            <td style="width: 14%;">Atendido por:</td>
+                            <td style="border-bottom: 1pt solid #1d3660; text-align: left;"><span style="color:black" t-field="o.user_id.name"/></td>
+                        </tr>
+                        </table>
+                        <table style="width:80%; color: #1d3660; margin: 0 auto;">
+                        <tr>
+                            <td style="width:12.5%">Hora Inicio:</td>
+                            <td style="border-bottom: 1pt solid #1d3660;"></td>
+                            <td style="width:12.5%">Hora Final:</td>
+                            <td style="border-bottom: 1pt solid #1d3660;"></td>
+                        </tr>
+                        </table>
+                        <br>
+                        </br>
+                        <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
+                        <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">RECIBIDO POR:</span>
+                        </div>
+                        <br>
+                        </br>
+                        <br>
+                        </br>
+                        <br>
+                        </br>
+                        <br>
+                        </br>
+                        <table style="width: 80%; text-align: center; font-weight: bold; margin: 0 auto;">
+                        <tr>
+                            <td style="border-bottom: 1pt solid #EFA54D; width:40%"></td>
+                            <td style="color: #FFFFFF"></td>
+                            <td style="border-bottom: 1pt solid #EFA54D; width:40%"></td>
+                        </tr>
+                        </table>
+                        <table style="width:80%; text-align: center; color: #EFA54D; font-weight: bold; margin: 0 auto;">
+                        <tr>
+                            <td style="width:40%">NOMBRE Y FIRMA</td>
+                            <td style="color: #FFFFFF"></td>
+                            <td style="width:40%;">FECHA</td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <br><center><small style="text-align: center">Chimalhuacán No. 3569 Piso 5 int. 6 Col. Ciudad del Sol, Zapopan, Jal. / Soporte (33) 4737 0090 / 800 112 7738 / assetel.com</small></center>
+                        </br>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report id="report_project_task" 
+            string="Reporte de servicio"
+            model="project.task"
+            report_type="qweb-pdf"
+            name="service_installation.service_report"
+        />
+    </data>
+</odoo>
+
+

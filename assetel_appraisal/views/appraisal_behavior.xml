@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- VISTA FORMULARIO  -->
+  <record id="appraisal_behavior_view_form" model="ir.ui.view"> 
+    <field name="name">appraisal.behavior.view.form</field> 
+    <field name="model">appraisal.behavior</field>
+    <field name="arch" type="xml">
+      <form string="Nueva Competencia">
+          <sheet>
+              <div class="oe_button_box" name="button_box">
+              </div>
+              <group>
+                <div class="oe_title pr-0">
+                  <h1 class="d-flex flex-row justify-content-between">
+                    <field name="name" class="o_task_name text-truncate" readonly="1" placeholder="Nombre"/>
+                  </h1>
+                </div>
+              </group>                        
+              <group string="Descripción de conductas">
+                <group>
+                  <field name="stage" invisible="1"/>
+                  <field name="competencia_id" attrs="{'readonly':['|',('stage','=','proceso'), ('stage','=','evaluacion')]}"/>
+                </group>
+              </group>
+              <group>
+                <group>
+                  <field name="competencia" required="1" attrs="{'readonly':['|',('stage','=','proceso'), ('stage','=','evaluacion')]}"/>
+                </group>
+                <group>
+                  <field name="conducta"  required="1" attrs="{'readonly':['|',('stage','=','proceso'), ('stage','=','evaluacion')]}"/>
+                </group>
+              </group>
+              <group>
+                <field name="descripcion" required="1" attrs="{'readonly':['|',('stage','=','proceso'), ('stage','=','evaluacion')]}"/>
+                <field name="promedio_supervisor" invisible="1"/>
+                <field name="promedio_empleado" invisible="1"/>
+                <field name="employee_status" invisible="1"/>
+              </group>
+              <notebook>
+                <page name="comentario_empleado" string="Comentarios empleado" >
+                  <group>
+                    <group>
+                      <field name="conducta_type_empleado" attrs="{'readonly':['|',('stage','!=','proceso'), ('employee_status','!=','empleado')]}" />
+                    </group>
+                    <group>
+                      <field name="frecuencia_type_empleado" attrs="{'readonly':['|',('stage','!=','proceso'), ('employee_status','!=','empleado')]}"/>
+                    </group>
+                  </group>
+                  <group>
+                    <field name="comentarios_empleado"   attrs="{'readonly':['|',('stage','!=','proceso'), ('employee_status','!=','empleado')]}"/>
+                  </group>
+                </page>
+                <page name="comentario_supervisor" string="Comentarios Supervisor">
+                  <group>
+                    <group>
+                      <field name="conducta_type_supervisor"  attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','supervisor')]}"/>
+                    </group>
+                    <group>
+                      <field name="frecuencia_type_supervisor"  attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','supervisor')]}"/>
+                    </group>
+                  </group>
+                  <group>
+                    <field name="comentarios_supervisor"  attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','supervisor')]}"/>
+                  </group>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+</odoo>

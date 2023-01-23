@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_order_inherit_assetel_invoicing" model="ir.ui.view">
+    <field name="name">sale.order.inherit.assetel.invoicing</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='partner_id']" position="attributes">
+        <attribute name="domain">[('type', '=', 'contact'), ('parent_id', '=', False)]</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='partner_invoice_id']" position="attributes">
+        <attribute name="domain">[('type', '=', 'invoice'), ('parent_id', '=?', partner_id)]</attribute>
+      </xpath>
+
+      <xpath expr="//group[@name='sale_reporting']" position="attributes">
+        <attribute name="groups"/>
+      </xpath>
+
+      
+
+    </field>
+  </record>
+
+  <record id="sale_order_inherit_assetel_invoicing_2" model="ir.ui.view">
+    <field name="name">sale.order.inherit.assetel.invoicing.2</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale_crm.sale_view_inherit123"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='opportunity_id']" position="attributes">
+        <attribute name="groups"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

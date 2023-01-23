@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="hr_leave_type_inherit_assetel_holidays" model="ir.ui.view">
+    <field name="name">hr.leave.type.inherit.assetel.holidays</field>
+    <field name="model">hr.leave.type</field>
+    <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
+        <group>
+          <group>
+            <field name="automatic_allocation" widget="boolean_toggle"/>
+          </group>
+          <group>
+            <field name="accumulative" widget="boolean_toggle"/>
+          </group>
+          
+          <group>
+            <field name="holidays_table" attrs="{'invisible': [('automatic_allocation', '=', False)]}">
+              <tree editable="bottom">
+                <field name="years"/>
+                <field name="holidays"/>
+              </tree>
+            </field>
+          </group>
+
+          <group>
+            <field name="employee_ids" attrs="{'invisible': [('automatic_allocation', '=', False)]}">
+              <tree>
+                <field name="name"/>
+              </tree>
+            </field>
+          </group>
+        </group>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

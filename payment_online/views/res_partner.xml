@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_payment_online" model="ir.ui.view">
+    <field name="name">res.partner.inherit.payment.online</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="product.view_partner_property_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='property_product_pricelist']" position="after">
+            <field name="pay_online"/>
+        </xpath>
+        
+    </field>
+  </record>
+</odoo>

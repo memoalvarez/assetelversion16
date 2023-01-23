@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="get_appraisal_period_view" model="ir.actions.act_window">
+        <field name="name">Evaluaciones</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">appraisal.period</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Agrega una nueva evaluación
+            </p>
+        </field>
+    </record>
+    <record id="get_strategic_objectives_view" model="ir.actions.act_window">
+        <field name="name">Objetivos estrategicos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">strategic.objectives</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Agrega un nuevo objetivo estrategico
+            </p>
+        </field>
+    </record>
+    <record id="get_expected_behaviors_view" model="ir.actions.act_window">
+        <field name="name">Conductas y Competecias</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">expected.behaviors</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Agrega una nueva conducta y competencia
+            </p>
+        </field>
+    </record>
+
+    <record id="assetel_appraisal.appraisal_period_view_menu" model="ir.ui.menu">
+        <field name="action" eval="False"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Evaluaciones</field>
+        <field name="parent_id" eval="False"/>
+        <field name="sequence">10</field>
+        <field name="web_icon">fa fa-check-square,#FFFFFF,#944b4b</field>
+    </record>
+
+    <record id="assetel_appraisal.appraisal_period_menu" model="ir.ui.menu">
+        <field name="action" ref="assetel_appraisal.get_appraisal_period_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Periodos de evaluación</field>
+        <field name="parent_id" ref="assetel_appraisal.appraisal_period_view_menu"/>
+        <field name="sequence">10</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+    
+    <record id="assetel_appraisal.config_menu" model="ir.ui.menu">
+        <field name="action" eval="False"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Configuración</field>
+        <field name="parent_id" ref="assetel_appraisal.appraisal_period_view_menu"/>
+        <field name="sequence">10</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+
+    <record id="assetel_appraisal.strategic_objectives_menu" model="ir.ui.menu">
+        <field name="action" ref="assetel_appraisal.get_strategic_objectives_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Objetivos estrategicos</field>
+        <field name="parent_id" ref="assetel_appraisal.config_menu"/>
+        <field name="sequence">10</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+    <record id="assetel_appraisal.expected_behaviors_menu" model="ir.ui.menu">
+        <field name="action" ref="assetel_appraisal.get_expected_behaviors_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Conductas y Competencias</field>
+        <field name="parent_id" ref="assetel_appraisal.config_menu"/>
+        <field name="sequence">10</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+</odoo>

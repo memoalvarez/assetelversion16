@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="helpdesk_team_inherit_customer_registration" model="ir.ui.view">
+    <field name="name">helpdesk.team.inherit.customer.registration</field>
+    <field name="model">helpdesk.team</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_team_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//form[1]/sheet[1]/div[3]/div[1]/div[1]" position="before">
+            <div class="o_setting_right_pane">
+                <label for="internal_support"/>
+                <field name="internal_support"/>
+            </div> 
+        </xpath>
+        
+    </field>
+  </record>
+</odoo>

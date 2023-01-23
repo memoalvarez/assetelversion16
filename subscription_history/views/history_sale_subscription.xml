@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA HISTORY.INSTALLED.SERVICES -->
+
+  <record id="history_sale_subscription_tree" model="ir.ui.view">
+    <field name="name">history.sale.subscription.tree</field> 
+    <field name="model">history.sale.subscription</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="code" optional="show"/>
+        <field name="display_name" optional="hide"/>
+        <field name="partner_id" optional="show"/>
+        <field name="user_id" optional="show"/>
+        <field name="template_id" optional="hide"/>
+        <field name="recurring_total" optional="show"/>
+        <field name="currency_id" optional="show"/>
+        <field name="modification_date" optional="show"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA FORMULARIO PARA HISTORY.INSTALLED.SERVICES-->
+
+  <record id="history_sale_subscription_form" model="ir.ui.view"> 
+    <field name="name">history.sale.subscription.form</field> 
+    <field name="model">history.sale.subscription</field>
+    <field name="arch" type="xml">
+      <form string="Numero de suscripcion">
+          <sheet>
+          <div class="oe_button_box" name="button_box">
+                <button class="oe_stat_button" icon="fa-circle-o-notch" name="open_subscription" type="object" string="Suscripcion"></button>
+              </div>
+              <group>
+                <div class="oe_title">
+                  <h1>
+                    <field name="display_name" readonly="1" placeholder="Numero de suscripcion"/>
+                  </h1>
+                </div>
+              </group>
+
+              <group></group>
+
+              <group name="info_1">
+                <group>
+                  <field name="empresarial_group" readonly="1"/>
+                  <field name="partner_id" readonly="1"/>
+                  <field name="pricelist_id" readonly="1"/>
+                  <field name="date_start" readonly="1"/>
+                  <field name="date" readonly="1"/>
+                  <field name="close_reason_id" readonly="1"/>
+                </group>
+                <group>
+                  <field name="template_id" readonly="1"/>
+                  <field name="user_id" readonly="1"/>
+                  <field name="team_id" readonly="1"/>
+                  <field name="corporate_group_id" readonly="1"/>
+                  <field name="company_id" readonly="1"/>
+                  <field name="currency_id" invisible="1"/>
+                </group>
+              </group>
+
+              <group></group>
+
+              <notebook colspan="4">
+                <page name="installed_equipment" string="Apuntes de asientos periodicos">
+                  <group>
+                    <field name="recurring_invoice_line_ids" readonly="1" nolabel="1" widget="one2many_list">
+                      <tree>
+                        <field name="service_number"/>
+                        <field name="product_id"/>
+                        <field name="name"/>
+                        <field name="site"/>
+                        <field name="uom_id"/>
+                        <field name="quantity"/>
+                        <field name="price_unit"/>
+                        <field name="discount"/>
+                        <field name="price_subtotal"/>
+                      </tree>
+                    </field>
+                    <group class="oe_subtotal_footer oe_right">
+                      <field name="recurring_total" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}" modifiers="{'readonly': true}"/>
+                    </group>
+                  </group>
+                </page>
+                <page name="recurring_invoice" string="Otra Información">
+                  <group>
+                    <field name="code"/>
+                    <field name="modification_date"/>
+                  </group>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+
+  <!-- ACTION PARA HISTORY.INSTALLED.SERVICES-->
+
+  <record id="get_history_sale_subscription_view" model="ir.actions.act_window">
+        <field name="name">Historial de suscripciones</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">history.sale.subscription</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea un nuevo registro
+            </p>
+        </field>
+    </record>
+
+    <record id="subscription_history.history_sale_subscription_menu" model="ir.ui.menu">
+      <field name="action" ref="subscription_history.get_history_sale_subscription_view"/>
+      <field name="active" eval="True"/>
+      <field name="groups_id" eval="[(6, 0, [])]"/>
+      <field name="name">Reporte de cambios</field>
+      <field name="parent_id" ref="sale_subscription.menu_sale_subscription_report"/>
+      <field name="sequence">15</field>
+      <field name="web_icon" eval="False"/>
+  </record>
+
+</odoo>

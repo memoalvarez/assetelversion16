@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="helpdesk_ticket_form_inherit_empresarial_group" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.form.inherit.empresarial.group</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='partner_id']" position="before">
+        <field name="empresarial_group"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>
