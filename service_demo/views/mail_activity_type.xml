@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="mail_activity_type_inherit_service_demo" model="ir.ui.view">
+    <field name="name">mail.activity.type.inherit.service.demo</field>
+    <field name="model">mail.activity.type</field>
+    <field name="inherit_id" ref="mail.mail_activity_type_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='mail_template_ids']" position="after">
+            <field name="demo_ending_activity" invisible="0"/>
+        </xpath>
+
+      
+
+    </field>
+  </record>
+
+</odoo>
+

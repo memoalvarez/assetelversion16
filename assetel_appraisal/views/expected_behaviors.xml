@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- VISTA ARBOL PARA EXPECTED.BEHAVIORS -->
+  <record id="expected_behaviors_tree" model="ir.ui.view">
+    <field name="name">expected.behaviors.tree</field> 
+    <field name="model">expected.behaviors</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+      </tree>
+    </field> 
+  </record>
+
+  <!-- VISTA FORMULARIO PARA  EXPECTED.BEHAVIORS -->
+  <record id="expected_behaviors_form" model="ir.ui.view"> 
+    <field name="name">expected.behaviors.form</field> 
+    <field name="model">expected.behaviors</field>
+    <field name="arch" type="xml">
+      <form string="Conductas y Competecias">
+          <sheet>
+              <field name="active" invisible="1"/>
+              <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+              <group>
+                <div class="oe_title pr-0">
+                  <h1 class="d-flex flex-row justify-content-between">
+                    <field name="name" class="o_task_name text-truncate" readonly="1" placeholder="Nombre"/>
+                  </h1>
+                </div>
+              </group>                        
+              <group>
+                <group>
+                  <field name="competencia"/>
+                </group>
+                <group>
+                  <field name="conducta"/>
+                </group>
+              </group>
+              <group>
+                  <field name="descripcion"/>
+              </group>
+              <notebook>
+              <page name="empleados" string="Empleados">
+                  <group>
+                    <field name="behaviors_empleados" readonly="0" nolabel="1">
+                      <tree>
+                        <field name="name" readonly="1"/>
+                        <field name="department_id" readonly="1"/>
+                        <field name="job_id" readonly="1"/>
+                        <field name="parent_id" readonly="1"/>
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+</odoo>

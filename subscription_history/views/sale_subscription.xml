@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_subscription_inherit_subscription_history" model="ir.ui.view">
+    <field name="name">sale.subscription.inherit.subscription.history</field>
+    <field name="model">sale.subscription</field>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+          <button name="new_history" string="Guardar en Historial" type="object" class="oe_highlight" groups="access_rights_assetel.installed_services_guardar_historial"/>
+        </xpath>
+
+        <xpath expr="//div[@name='button_box']" position="inside">
+          <button type="object" name="action_view_history" class="oe_stat_button" icon="fa-folder" attrs="{'invisible': [('history_count', '=', 0)]}">
+            <field string="Historial" name="history_count" widget="statinfo"/>
+          </button>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

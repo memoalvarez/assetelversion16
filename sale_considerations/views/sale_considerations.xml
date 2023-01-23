@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+  <!-- VISTA ARBOL PARA GRUPO EMPRESARIAL -->
+
+  <record id="sale_considerations_tree" model="ir.ui.view">
+    <field name="name">sale.considerations.tree</field> 
+    <field name="model">sale.considerations</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="commercial_consideration"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA FORMULARIO PARA GRUPO EMPRESARIAL -->
+
+  <record id="sale_considerations_form" model="ir.ui.view"> 
+    <field name="name">sale.considerations.form</field> 
+    <field name="model">sale.considerations</field>
+    <field name="arch" type="xml">
+      <form string="Consideraciónes de venta">
+        <sheet>
+            <div class="oe_title">
+                <h1>
+                    <field name="name" required='1'/>
+                </h1>
+            </div>
+
+            <group>
+              <group>
+                <field name="commercial_consideration"/>
+              </group>
+
+              <group>
+                <field name="currency_id" attrs="{'invisible': [('commercial_consideration', '=', False)]}"/>
+              </group>
+            </group>
+            <group>
+              <field name="note"/>
+            </group>
+        </sheet>
+      </form>
+    </field> 
+  </record>
+
+</odoo>

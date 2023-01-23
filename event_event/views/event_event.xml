@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="event_event_inherit_event_event" model="ir.ui.view">
+    <field name="name">event.event.inherit.event.event</field>
+    <field name="model">event.event</field>
+    <field name="inherit_id" ref="event.view_event_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
+        <field name="private_description"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

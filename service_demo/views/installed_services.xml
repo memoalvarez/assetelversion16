@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="installed_services_inherit_service_demo" model="ir.ui.view">
+    <field name="name">installed.services.inherit.service.demo</field>
+    <field name="model">installed.services</field>
+    <field name="inherit_id" ref="installed_services.installed_services_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='service_type']" position="before">
+            <field name="demo_service" invisible="1"/>
+        </xpath>
+
+        <xpath expr="//div[@class='oe_button_box']" position="after">
+            <widget name="web_ribbon" text="Demo" bg_color="bg-warning" attrs="{'invisible': [('demo_service', '=', False)]}"/>
+            <widget name="web_ribbon" text="Formal" bg_color="bg-success" attrs="{'invisible': [('installation_type', '!=', 'formal')]}"/>
+            <widget name="web_ribbon" text="Cortesía" bg_color="bg-primary" attrs="{'invisible': [('installation_type', '!=', 'cortesia')]}"/>
+            <widget name="web_ribbon" text="Infraestructura" bg_color="bg-primary" attrs="{'invisible': [('installation_type', '!=', 'infraestructura')]}"/>
+            <widget name="web_ribbon" text="Temporal" bg_color="bg-primary" attrs="{'invisible': [('installation_type', '!=', 'temporal')]}"/>
+        </xpath>
+
+        <xpath expr="//group[@name='info_1']" position="after">
+            <group attrs="{'invisible': [('demo_service', '=', False)]}">
+                <group>
+                    <field name="demo_installation_date" readonly="1"/>
+                    <field name="demo_finish_date"/>
+                </group>
+
+                <group>
+                </group>
+            </group>
+        </xpath>
+
+        <xpath expr="//field[@name='service_type']" position="after">
+            <field name="installation_type" attrs="{'invisible': [('demo_service', '!=', False)]}"/>
+        </xpath>
+
+    </field>
+  </record>
+
+  <record id="installed_services_inherit_2_service_demo" model="ir.ui.view">
+    <field name="name">installed.services.inherit.2.service.demo</field>
+    <field name="model">installed.services</field>
+    <field name="inherit_id" ref="service_installation.installed_services_inherit_service_installation"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//group[@name='subs_fields']" position="attributes">
+            <attribute name="attrs">{'invisible': [('demo_service', '=', True)]}</attribute>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

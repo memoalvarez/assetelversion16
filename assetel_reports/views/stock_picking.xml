@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="stock_picking_inherit_assetel_reports" model="ir.ui.view">
+    <field name="name">stock.picking.inherit.assetel.reports</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='state']" position="before">
+            <button type="object" name="action_view_sign_templates" class="oe_stat_button" icon="fa-sticky-note" attrs="{'invisible': [('sign_template', '=', False)]}" string="Plantilla de responsiva"/>
+            <field name="sign_template" invisible="1"/>
+            <button type="object" name="action_view_sign_request" class="oe_stat_button" icon="fa-pencil" attrs="{'invisible': [('sign_request', '=', False)]}" string="Solicitud de firma"/>
+            <field name="sign_request" invisible="1"/>
+        </xpath>
+
+        <xpath expr="//button[@name='action_cancel']" position="after">
+            <button name="createandopen_signature_request_responsive" string="Responsiva" attrs="{'invisible': ['|', ('state', '!=', 'done'), ('employee_operation_type', '=', False)]}" type="object" class="oe_highlight"/>
+            <field name="employee_operation_type" invisible="1"/>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

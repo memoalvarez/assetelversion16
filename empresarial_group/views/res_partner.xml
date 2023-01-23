@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_empresarial_group" model="ir.ui.view">
+    <field name="name">res.partner.inherit.empresarial.group</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+      <field name="parent_id"  position="before">
+        <field name="empresarial_group_id" attrs="{'invisible': [('company_type', '!=', 'company')]}" placeholder="Grupo empresarial" help="Grupo empresarial al que pertenece"/>
+      </field>
+
+    </field>
+  </record>
+
+</odoo>

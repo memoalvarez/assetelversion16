@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_lead_inherit_crm_monto" model="ir.ui.view">
+    <field name="name">crm.lead.inherit.crm.monto</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='expected_revenue']" position="after">
+            <span class="oe_grey p-2">Retencion</span>
+            <field name="montoRetencion" class="oe_inline" widget="monetary"/>
+        </xpath>
+        
+    </field>
+    </record>
+
+    <record id="crm_lead_inherit_crm_monto_2" model="ir.ui.view">
+    <field name="name">crm.lead.inherit.crm.monto.2</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+    <field name="arch" type="xml">
+        
+        <field name='expected_revenue' position="after">
+            <field name="montoRetencion"/>
+        </field>
+        
+        <field name='team_id' position="after">
+            <field name="date_deadline"/>
+        </field>
+        
+    </field>
+    </record>
+
+</odoo>

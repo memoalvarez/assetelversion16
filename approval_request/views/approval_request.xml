@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="approval_request_inherit_approval_request" model="ir.ui.view">
+    <field name="name">approval.request.inherit.approval.request</field>
+    <field name="model">approval.request</field>
+    <field name="inherit_id" ref="approvals.approval_request_view_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='request_status']" position="before">
+        <button name="marcar_entregado" confirm="Se marcara como entregado, ¿Estas seguro?" string="Entregado" type="object" class="oe_highlight" attrs="{'invisible': [('entregado', '=', True)]}" groups="access_rights_assetel.assetel_finanzas_inventario"/>
+      </xpath>
+
+      <xpath expr="//div[@class='oe_avatar']" position="before">
+        <field name="entregado" invisible="1"/>
+        <widget name="web_ribbon" text="Entregado" attrs="{'invisible': [('entregado', '=', False)]}"/>
+      </xpath>
+
+      <xpath expr="//field[@name='category_id']" position="attributes">
+        <attribute name="string">Tipo de aprobación</attribute>
+      </xpath>
+      
+      <xpath expr="//field[@name='category_id']" position="after">
+        <field name="approval_request_category_id" widget="many2many_tags" domain="[('approval_category_id', '=', category_id)]"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

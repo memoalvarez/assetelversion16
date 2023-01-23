@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA HISTORY.INSTALLED.SERVICES -->
+
+  <record id="history_installed_services_tree" model="ir.ui.view">
+    <field name="name">history.installed.services.tree</field> 
+    <field name="model">history.installed.services</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="product_id"/>
+        <field name="empresarial_group"/>
+        <field name="partner_id"/>
+        <field name="site"/>
+        <field name="modification_date"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA FORMULARIO PARA HISTORY.INSTALLED.SERVICES-->
+
+  <record id="history_installed_services_form" model="ir.ui.view"> 
+    <field name="name">history.installed.services.form</field> 
+    <field name="model">history.installed.services</field>
+    <field name="arch" type="xml">
+      <form string="Número de servicio">
+          <sheet>
+              <div class="oe_button_box" name="button_box">
+                <button class="oe_stat_button" icon="fa-gear" name="open_service_configuration" type="object" string="Configuración"></button>
+              </div>
+
+              <group>
+                <div class="oe_title">
+                  <h1>
+                    <field name="name" readonly="1" placeholder="Numero de servicio"/>
+                  </h1>
+                </div>
+              </group>
+
+              <group></group>
+
+              <group name="info_1">
+                <group>
+                  <field name="service_type" readonly="1"/>
+                  <field name="product_id" readonly="1"/>
+                  <field name="description" readonly="1"/>
+                </group>
+                <group>
+                  <field name="empresarial_group" readonly="1"/>
+                  <field name="partner_id" readonly="1"/>
+                  <field name="razon_social_id" readonly="1"/>
+                  <field name="site" readonly="1"/>
+                </group>
+              </group>
+
+              <group name="info_2">
+                <group name="campos_comercial">
+                  <field name="encargado_comercial"/>
+                </group>
+
+                <group name="demo">
+                  <field name="sale_subscription"/>
+                  <field name="demo_installation_date" attrs="{'invisible':[('demo_installation_date', '=', False)]}" readonly="1"/>
+                  <field name="demo_finish_date" attrs="{'invisible':[('demo_finish_date', '=', False)]}" readonly="1"/>
+                </group>
+              </group>
+
+
+              <group name="info_2">
+                <group name="campos_info_serv">
+                  <field name="quantity" readonly="1"/>
+                  <field name="service_price_unit" readonly="1" groups="access_rights_assetel.assetel_finanzas_mesa_control"/>
+                  <field name="service_vig" readonly="1"/>
+                </group>
+
+                <group name="libre">
+                 
+                </group>
+              </group>
+
+              <group>
+                <field name="modification_date" readonly="1"/>
+                <field name="notes" readonly="1"/>
+              </group>
+
+              <group></group>
+
+              <notebook colspan="4">
+                <page name="installed_equipment" string="Equipos instalados">
+                  <group>
+                    <field name="lot_ids" readonly="1" nolabel="1" widget="one2many_list">
+                      <tree>
+                        <field name="name"/>
+                        <field name="product_id"/>
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+              </notebook>
+          </sheet>
+      </form>
+    </field> 
+  </record>
+
+  <!-- ACTION PARA HISTORY.INSTALLED.SERVICES-->
+
+  <record id="get_history_installed_services_view" model="ir.actions.act_window">
+        <field name="name">Historial de servicios Instalados</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">history.installed.services</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea un nuevo registro
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="contrato_residencial_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="header">
+                        <div style="float: left;">
+                            <img src="/assetel_reports/static/src/img/logo_assetel.png" alt="Assetel" width="250px"/>
+                        </div>
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660;">Sitio</td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 60px 3px 60px; color: #000000; border-radius: 15px 15px 0px 0px; border: white 1px solid"><span style="color:black;" t-field="o.site.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660;">No. Contrato</td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 60px 3px 60px; border: white 1px solid"> </td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660;">No. Pedido</td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 60px 3px 60px; border: white 1px solid"><span style="color:black;" t-field="o.sale_order_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #1d3660;">Fecha</td>
+                                    <td style="text-align: center; background: #EFA54D; padding: 3px 60px 3px 60px; border-radius: 0px 0px 15px 15px; border: white 1px solid"><span style="color:black;" t-field="o.date_deadline"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div style="text-align: center; margin-bottom: 5px; padding-top:5px">
+                            <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">INFORMACIÓN DE CLIENTE</span>
+                        </div>
+                        <table style="width:100%; color: #1d3660">
+                            <tr>
+                                <td style="width:5%">Calle: </td>
+                                <td style="width:38%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.street_name"/></td>
+                                <td style="width:8%">No. Int: </td>
+                                <td style="width:20%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.street_number"/></td>
+                                <td style="width:8%">No. Ext: </td>
+                                <td style="width:20%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.street_number2"/></td>
+                            </tr>
+                        </table>
+                        <table style="width:100%; color: #1d3660">
+                            <tr>
+                                <td style="width:5%">Colonia: </td>
+                                <td style="width:36%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.l10n_mx_edi_colony"/></td>
+                                <td style="width:5%">Municipio: </td>
+                                <td style="width:24%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.city_id.name"/></td>
+                                <td style="width:5%">Estado: </td>
+                                <td style="width:24%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.state_id.name"/></td>
+                            </tr>
+                        </table>
+                        <table style="width:100%; color: #1d3660">
+                            <tr>
+                                <td style="width:15%">Telefono fijo: </td>
+                                <td style="width:35%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.phone"/></td>
+                                <td style="width:15%">Telefono movil: </td>
+                                <td style="width:35%; border-bottom: 1pt solid #1d3660;color:black"><span style="color:black;" t-field="o.partner_id.mobile"/></td>
+                            </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 5px">
+                            <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">INFORMACIÓN DEL SERVICIO CONTRATADO</span>
+                        </div>
+                        <table style="width:100%; color: #1d3660;">
+                            <tr>
+                                <td style="width:20%;">Paquete contratado: </td>
+                                <td style="width:80%; border-bottom: 1pt solid #1d3660;color:black; text-align: center;"><span style="color:black;" t-field="o.name"/></td>
+                            </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 15px">
+                            <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">SERVICIO REALIZADO</span>
+                        </div>
+                        <table style="width:100%; color: #1d3660">
+                        <tr>
+                            <td  style="width:50%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Instalación gratis</td>
+                            <td style="width:50%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Instalación diferida en 5 meses</td>                            
+                        </tr>
+                        </table>
+                        <table style="width:100%; color: #1d3660">
+                        <tr>
+                            <td  style="width:20%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Otro: </td>
+                            <td style="border-bottom: 1pt solid #1d3660;color:black"></td>
+                        </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 5px">
+                            <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">IDENTIFICACIÓN OFICIAL</span>
+                        </div>
+                        <table style="width:100%; color: #1d3660">
+                            <tr>
+                                <td  style="width:10%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>INE: </td>
+                                <td style="border-bottom: 1pt solid #1d3660; text-align: left;width:40%"><p style="width: 300px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:black;"></p></td>
+                                <td  style="width:10%"><span style="height: 15px; width: 15px; border-radius: 50%; border: #EFA54D 2px solid; display: inline-block; margin-right: 5px;"></span>Otro: </td>
+                                <td style="border-bottom: 1pt solid #1d3660; text-align: left;width:40%"><p style="width: 300px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;color:black;"></p></td>
+                            </tr>
+                        </table>
+                        <table style="width:100%; background: #1d3660; color: #FFFFFF; font-weight: bold; border-radius: 15px 15px 15px 15px; margin-top: 10px;">
+                            <tr style="text-align: center;">
+                                <td style="width:15%">EQUIPO</td>
+                                <td style="width:37%">MODELO</td>
+                                <td style="width:20%">No. SERIE</td>
+                                <td style="width:28%">IP</td>
+                            </tr>
+                        </table>
+                        <table style="width: 100%;text-overflow: ellipsis;table-layout:fixed;">
+                            <t t-set="count" t-value="0"/>   
+                            <t t-foreach="o.mrp_production.move_raw_ids" t-as="line">
+                                <t t-foreach="line.move_line_ids" t-as="serie">
+                                    <tr>
+                                        <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:15%;overflow: hidden;display: inline-block;white-space: nowrap;"><p style="width: 119px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span t-field="serie.product_id.categ_id.name"/></p></td>
+                                        <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:37%;overflow: hidden;display: inline-block;white-space: nowrap;"><p style="width: 238px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span t-field="serie.product_id.name"/></p></td>
+                                        <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"><p style="width: 119px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span t-field="serie.lot_id.name"/></p></td>
+                                        <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:28%;overflow: hidden;display: inline-block;white-space: nowrap;"> </td>
+                                    </tr>
+                                <t t-set="count" t-value="count + 1"/>   
+                                </t>
+                            </t>
+                            <t t-set="resta" t-value="4 - count"/>
+                            <t t-foreach="range(resta)" t-as="i">
+                                <tr style="height:20px"> 
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:15%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:37%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:20%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                    <td style="background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;width:28%;overflow: hidden;display: inline-block;white-space: nowrap;"></td>
+                                </tr>
+                            </t>
+                        </table>
+                        <p style ="font-size:12px; color:black">El equipo instalado es propiedad de Assetel, S.A. de C.V., y podrá sustituido por otro, conforme a los requerimientos que Assetel defina para prestar el servicio contratado, o retirado, en caso de la baja del servicio por parte del cliente</p>
+                        <table style="width: 100%; ">
+                            <tr>
+                                <td style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold; text-align: center; margin-top: 20px;">OBSERVACIONES</td>
+                            </tr>
+                            <tr>
+                                <td style="border-radius: 15px 15px 15px 15px; background: #EFA54D; color: #000000; padding: 5px 30px 5px 30px; text-align: left; margin-top: 20px;height:100px"> </td>
+                            </tr>
+                        </table>
+                        <div style="text-align: center; margin-top: 10px; margin-bottom: 0px">
+                            <span style="border-radius: 15px 15px 15px 15px; background: #1d3660; color: #FFFFFF; padding: 5px 30px 5px 30px; font-weight: bold">TERMINOS DE CONFORMIDAD DE LA INSTALACIÓN</span>
+                        </div>
+                        <p style ="font-size:10px; color:black">Por medio de la presente manifiesto de conformidad que las actividades de instalación del servicio proporcionado por Assetel, S.A. de C.V. en mi domicilio, son de mi entera satisfacción, además manifiesto de forma enunciativa más no limitativa que los equipos, computadoras, instalación eléctrica, así como el mobiliario de mi propiedad, se encuentran en buen estado sin sufrir alteración alguna y funcionando adecuadamente, así como doy fe que todos los bienes de mi propiedad ubicados en la zona de trabajo donde se instaló el servicio, se encuentran en el mismo lugar de origen y no se reportan faltantes.</p>
+                        <p style ="font-size:10px; color:black">El suscriptor: <span style="font-weight: bold" t-field="o.partner_id.name"/> manifiesta estar de acuerdo en la instalación de cables, extensiones, decodificadores y demás accesorios, y en caso de que modifique, corte y/o desconecte los equipos o instalaciones de cableado, Asseetel no se hará responsable de la calidad en la recepción del servicio hasta que el suscriptor reporte la falla y se levante un ticket de seguimiento para dar el soporte correspondiente.</p>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <table style="width: 80%; text-align: center; font-weight: bold; margin: 0 auto;">
+                        <tr>
+                            <td style="border-bottom: 1pt solid #EFA54D; width:40%"></td>
+                            <td style="color: #FFFFFF"></td>
+                            <td style="border-bottom: 1pt solid #EFA54D; width:40%"></td>
+                        </tr>
+                        </table>
+                        <table style="width:80%; text-align: center; color: #EFA54D; font-weight: bold; margin: 0 auto; font-size:20px">
+                            <tr>
+                                <td style="width:40%">Firma del instalador</td>
+                                <td style="color: #FFFFFF"></td>
+                                <td style="width:40%;">Firma del cliente</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="footer">
+                        <br><center><small style="text-align: center">Chimalhuacán No. 3569 Piso 5 int. 6 Col. Ciudad del Sol, Zapopan, Jal. / Soporte (33) 4737 0090 / 800 112 7738 / assetel.com</small></center>
+                        </br>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report id="report_contrato_residencial" 
+            string="Contrato Residencial"
+            model="project.task"
+            report_type="qweb-pdf"
+            name="assetel_reports.contrato_residencial_report"
+        />
+    </data>
+</odoo>
+
+

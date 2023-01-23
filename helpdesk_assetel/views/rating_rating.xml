@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="get_rating_report_ticket_helpdesk_assetel" model="ir.actions.act_window">
+      <field name="name">Calificación de tickets</field>
+      <field name="res_model">rating.rating</field>
+      <field name="view_mode">kanban,tree,pivot,graph,form</field>
+      <field name="domain">[('parent_res_model','=','helpdesk.team'), ('consumed', '=', True)]</field>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_empty_folder">
+              No customer ratings yet
+          </p><p>
+              Customer ratings on tickets.
+          </p>
+      </field>
+      <field name="context">{}</field>
+  </record>
+
+  <record id="helpdesk_assetel.rating_report_ticket_menu" model="ir.ui.menu">
+      <field name="action" ref="helpdesk_assetel.get_rating_report_ticket_helpdesk_assetel"/>
+      <field name="active" eval="True"/>
+      <field name="groups_id" eval="[(6, 0, [])]"/>
+      <field name="name">Calificación de tickets</field>
+      <field name="parent_id" ref="helpdesk.menu_helpdesk_root"/>
+      <field name="sequence">15</field>
+      <field name="web_icon" eval="False"/>
+  </record>
+</odoo>

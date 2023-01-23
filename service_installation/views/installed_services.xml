@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="installed_services_inherit_service_installation" model="ir.ui.view">
+    <field name="name">installed.services.inherit.service.installation</field>
+    <field name="model">installed.services</field>
+    <field name="inherit_id" ref="installed_services.installed_services_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//group[@name='libres']" position="replace">
+            <group name="subs_fields">
+                <field name="sale_subscription" readonly="1"/>
+                <field name="sale_subscription_line" readonly="1" domain="[('analytic_account_id','=',sale_subscription)]"/>
+            </group>
+        </xpath>
+
+        <xpath expr="//field[@name='service_price_unit']" position="before">
+            <field name="quantity"/>
+        </xpath>
+        
+        <xpath expr="//button[@name='open_service_configuration']" position="before">
+            <field name="project_task" invisible="1"/>
+            <button type="object" name="action_view_project_task" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('project_task', '=', False)]}" string="Tarea de proyecto"/>
+        </xpath>
+
+    </field>
+  </record>
+</odoo>

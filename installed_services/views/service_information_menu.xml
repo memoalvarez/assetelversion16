@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="get_service_information_view" model="ir.actions.act_window">
+        <field name="name">Informacion del servicio</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">service.information</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea la información para el servicio
+            </p>
+        </field>
+    </record>
+
+</odoo>

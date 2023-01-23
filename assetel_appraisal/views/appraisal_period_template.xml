@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="appraisal_period_report_id">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="header">
+                            <img src="/assetel_reports/static/src/img/logo_assetel.png" alt="Assetel" width="250px"/>
+                        </div>
+                        <div class="page">
+                            <p>Estimado(a): <strong><span t-field="doc.empleado"></span></strong>,</p>
+                            <p>Le informo el resultado de la evaluación de sus objetivos y conductas para el periodo: <strong><span t-field="doc.date_start"></span></strong> -- <strong><span t-field="doc.date_end"></span></strong></p>
+                            <p>La calificación general obtenida es: <strong><span t-field="doc.calificacion_general"></span></strong></p><br/>
+                        </div>
+                        <div>
+                            <strong>Objetivos Smart</strong><br/><br/>
+                            <table border="1" style="width:100%;border-collapse: collapse;"> 
+                                <tr style="font-weight:bold; border: 1px solid #00000; text-align: center;">
+                                    <td>Objetivo estrategico</td>
+                                    <td>Objetivo</td>
+                                    <td>Ponderación</td>
+                                    <td>Fecha de entrega</td>
+                                    <td>Resultado esperado</td>
+                                    <td>Resultado obtenido</td>
+                                </tr>
+                                <t t-foreach="doc.appraisal_smart_lines" t-as="line">
+                                    <tr style="border: 1px solid #00000; empty-cells:show; text-align: center;">
+                                        <td style="width:25%;"><p><span t-field="line.objetivo_estrategico"/></p></td>
+                                        <td style="width:25%;"><p><span t-field="line.objetivo"/></p></td>
+                                        <td style="width:20%;"><p><span t-field="line.ponderacion"/></p></td>
+                                        <td style="width:15%;"><p><span t-field="line.date_end"/></p></td>
+                                        <td style="width:20%;"><p><span t-field="line.resultado_esperado"/></p></td>
+                                        <td style="width:20%;"><p><span t-field="line.resultado_obtenido"/></p></td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <p>Calificación de objetivos: <strong><span t-field="doc.calificacion_smart"></span></strong></p><br/>
+
+                        </div>
+                        <div>
+                            <strong>Conductas Esperadas</strong><br/><br/>
+                            <table border="1" style="width:100%;border-collapse: collapse;"> 
+                                <tr style="font-weight:bold; border: 1px solid #00000; text-align: center;">
+                                    <td>Competencia</td>
+                                    <td>Conducta</td>
+                                    <td>Resultado esperado</td>
+                                    <td>Resultado obtenido</td>
+                                </tr>
+                                <t t-foreach="doc.appraisal_behavior_lines" t-as="line">
+                                    <tr style="border: 1px solid #00000; empty-cells:show; text-align: center;">
+                                        <td style="width:30%;"><p><span t-field="line.competencia"/></p></td>
+                                        <td style="width:30%;"><p><span t-field="line.conducta"/></p></td>
+                                        <td style="width:20%;"><p><span t-field="line.promedio_empleado"/></p></td>
+                                        <td style="width:20%;"><p><span t-field="line.promedio_supervisor"/></p></td>
+                                    </tr>
+                                </t>
+                            </table>
+                            <p>Calificación de conductas: <strong><span t-field="doc.calificacion_behavior"></span></strong></p><br/>
+
+                            <strong>Comentarios del empleado</strong><br/><br/>
+                            <span t-field="doc.comentario_empleado"></span><br/>
+
+                            <strong>Comentarios del supervisor</strong><br/><br/>
+                            <span t-field="doc.comentario_general"></span><br/>
+                        </div>
+
+                        <br/>
+                    
+                        <div>
+                            <div style="float: left; width: 49%">
+                                <img width="400" t-att-src="'data:image/png;base64,%s' % to_text(doc.firma_empleado)"/><br/>
+                                <strong style="margin-left: 65px;"><span t-field="doc.empleado"/></strong><br/>
+                            </div>
+                            <div style="float: left; width: 49%">
+                                <img width="400" t-att-src="'data:image/png;base64,%s' % to_text(doc.firma_supervisor)"/><br/>
+                                <strong style="margin-left: 65px;"><span t-field="doc.supervisor"/></strong><br/>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report id="appraisal_period_report" 
+            string="Reporte de evaluacion"
+            model="appraisal.period"
+            report_type="qweb-pdf"
+            name="assetel_appraisal.appraisal_period_report_id"/>
+    </data>
+</odoo>

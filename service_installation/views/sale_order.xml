@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_order_inherit_service_installation" model="ir.ui.view">
+    <field name="name">sale.order.inherit.service.installation</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
+        <field name="empresarial_group" invisible="1"/>
+        <field name="service_number" domain="[('empresarial_group', '=?', empresarial_group)]"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA res.partner (WISP_USER) -->
+
+  <record id="partner_view_tree" model="ir.ui.view">
+    <field name="name">partner.view.tree</field> 
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="email"/>
+        <field name="phone"/>
+        <field name="grade_id"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA FORMULARIO PARA res.partner (WIPS_USER) -->
+
+  <record id="partner_view_form" model="ir.ui.view"> 
+    <field name="name">partner.view.form</field> 
+    <field name="model">res.partner</field>
+    <field name="arch" type="xml">
+      <form string="Partners">
+          <sheet>
+              <field name="active" invisible="1"/>
+              <widget name="web_ribbon" title="Archivado" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+              <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+              <div class="oe_title pr-0">
+                <h1 class="d-flex flex-row justify-content-between">
+                  <field name="name" class="o_task_name text-truncate" placeholder="Nombre Comercial / Razón Social"/>
+                </h1>
+              </div>                     
+
+              <group>
+                <group>
+                  <field name="type" groups="base.group_no_one" invisible="1"/>
+                  <field name="name"/>
+                  <label for="street_name" name="address_name">
+                    <b>Domicilio</b>
+                  </label>
+                  <div class="o_address_format">
+                    <field name="street_name" placeholder="Nombre de la calle" class="o_address_street"/>
+                    <div class="oe_edit_only o_row">
+                      <label for="street_number"/>
+                      <field name="street_number"/>
+                      <label for="street_number2"/>
+                      <field name="street_number2"/>
+                    </div>
+                    <field name="street2" placeholder="Calle 2" class="o_address_street"/>
+                    <field name="city_id" placeholder="Ciudad" class="o_address_city"/>
+                    <field name="state_id" class="o_address_state" placeholder="Estado"/>
+                    <field name="zip" placeholder="C.P." class="o_address_zip"/>
+                    <field name="country_id" placeholder="Pais" class="o_address_country"/>
+                  </div>
+                  <field name="vat" string= "RFC" placeholder="e.g. BE0477472701"/>
+                </group>
+
+                <group>
+                  <field name="phone" widget="phone"/>
+                  <field name="mobile" widget="phone"/>
+                  <field name="email" widget="email" context="{'gravatar_image': True}"/>
+                </group>
+              </group>
+
+              <notebook>
+                <page name="asignacion_contactos" string="Asignación de contacto">
+                  <group colspan="2" col="2">
+                  <group> 
+                    <separator string="Asignacion" colspan="2"/>
+                        <field name="user_id"/>
+                  </group>
+                  <group>
+                    <separator string="Activación de empresa" colspan="2"/>
+                      <field name="grade_id"/>
+                      <field name="activation"/>
+                      <field name="partner_weight"/>
+                      <field name="number_afiliation"/>
+                  </group>
+                  </group>
+                  <group colspan="2" col="2">
+                    <separator string="Revisión de socio" colspan="2"/>
+                      <field name="date_review"/>
+                      <field name="date_review_next"/>
+                      <field name="date_partnership"/>
+                </group>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+</odoo>

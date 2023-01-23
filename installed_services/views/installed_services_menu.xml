@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="get_installed_services_view" model="ir.actions.act_window">
+        <field name="name">Servicios Instalados</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">installed.services</field>
+        <field name="view_mode">tree,form,map</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea un nuevo servicio
+            </p>
+        </field>
+    </record>
+
+    <record id="installed_services.active_services_menu" model="ir.ui.menu">
+        <field name="action" eval="False"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Servicios activos</field>
+        <field name="parent_id" eval="False"/>
+        <field name="sequence">11</field>
+        <field name="web_icon">fa fa-gears,#FFFFFF,#d49054</field>
+    </record>
+
+    <record id="installed_services.installed_services_menu" model="ir.ui.menu">
+        <field name="action" ref="installed_services.get_installed_services_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Servicios instalados</field>
+        <field name="parent_id" ref="installed_services.active_services_menu"/>
+        <field name="sequence">10</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+</odoo>

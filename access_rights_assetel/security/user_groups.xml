@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--BOTONES DE ACCION-->
+        <record model="ir.module.category" id="buttons_management">
+            <field name="name">Botones de acción</field>
+            <field name="description">Activa visibilidad de botones</field>
+            <field name="sequence">100</field>
+        </record>
+
+
+
+        <record id="installed_services_nuevo_ticket" model="res.groups">
+            <field name="name">Servicios instalados / Nuevo ticket</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="installed_services_guardar_historial" model="res.groups">
+            <field name="name">Servicios instalados / Guardar historial</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="installed_services_baja" model="res.groups">
+            <field name="name">Servicios instalados / Solicitar baja</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="installed_services_correo_bienvenida" model="res.groups">
+            <field name="name">Servicios instalados / Correo bienvenida</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="installed_services_suspender_servicio" model="res.groups">
+            <field name="name">Servicios instalados / Suspender servicio</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="installed_services_activar_servicio" model="res.groups">
+            <field name="name">Servicios instalados / Activar servicio</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="crm_dimensionamiento" model="res.groups">
+            <field name="name">CRM / Dimensionamiento</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="crm_solicitar_demo" model="res.groups">
+            <field name="name">CRM / Solicitud demo</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="crm_aprobacion_demo" model="res.groups">
+            <field name="name">CRM / Aprobacion demo</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="ventas_solicitud_aprobacion_presupuesto" model="res.groups">
+            <field name="name">Ventas / Solicitud de aprobacion presupuesto</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="ventas_aprobacion_presupuesto" model="res.groups">
+            <field name="name">Ventas / Aprobacion de presupuesto</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="proyecto_orden_fabricacion" model="res.groups">
+            <field name="name">Proyecto / Orden de fabricación</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="proyecto_registro_servicio" model="res.groups">
+            <field name="name">Proyecto / Registro de servicio</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="proyecto_desactivar_servicio" model="res.groups">
+            <field name="name">Proyecto / Desactivar servicio</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+        <record id="proyecto_bajas_aprobacion" model="res.groups">
+            <field name="name">Proyecto / Aprobacion de bajas</field>
+            <field name="category_id" ref="access_rights_assetel.buttons_management"/>
+        </record>
+
+
+
+        <!--PERFILES DE ACCESO-->
+        <record model="ir.module.category" id="access_management">
+            <field name="name">Perfiles de acceso</field>
+            <field name="description">Perfiles de acceso Assetel</field>
+            <field name="sequence">200</field>
+        </record>
+
+
+        <record id="assetel_ingenieria" model="res.groups">
+            <field name="name">Ingenieria</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_ingenieria_coordinador" model="res.groups">
+            <field name="name">Ingenieria coordinador</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_ingenieria_control_master" model="res.groups">
+            <field name="name">Ingenieria control de master</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_preventa" model="res.groups">
+            <field name="name">Preventa</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_administracion_comercial" model="res.groups">
+            <field name="name">Administracion comercial</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_comercial" model="res.groups">
+            <field name="name">Comercial</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_finanzas_mesa_control" model="res.groups">
+            <field name="name">Finanzas mesa de control</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_finanzas_gerencia" model="res.groups">
+            <field name="name">Finanzas gerencia</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_finanzas_inventario" model="res.groups">
+            <field name="name">Finanzas inventario</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_finanzas_cartera" model="res.groups">
+            <field name="name">Finanzas cartera</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_finanzas_pagos" model="res.groups">
+            <field name="name">Finanzas pagos</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_bpm" model="res.groups">
+            <field name="name">BPM</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+        <record id="assetel_capital_humano" model="res.groups">
+            <field name="name">Capital humano</field>
+            <field name="category_id" ref="access_rights_assetel.access_management"/>
+        </record>
+
+
+    </data>
+</odoo>

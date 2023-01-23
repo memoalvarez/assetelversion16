@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_subscription_inherit_installed_services" model="ir.ui.view">
+    <field name="name">sale.subscription.inherit.installed.services</field>
+    <field name="model">sale.subscription</field>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//form[1]/sheet[1]/div[not(@name)][3]/notebook[1]/page[1]/div[1]/field[@name='recurring_invoice_line_ids']/tree[1]/field[@name='product_id']" position="before">
+          <field name="analytic_account_id" invisible="1"/>
+            <field name="contact_id" invisible="1"/>
+            <field name="service_number" domain="[('partner_id', '=?', contact_id), ('stage', 'in', ['installed', 'active', 'discontinued'])]"/>
+        </xpath>
+
+        <xpath expr="//field[@name='partner_id']" position="after">
+          <field name="contact_id" invisible="1"/>
+        </xpath>
+
+     
+    </field>
+  </record>
+</odoo>
