@@ -19,7 +19,7 @@
     'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'website_crm_partner_assign', 'contacts', 'sign', 'survey', 'base_address_extended', 'base_address_city'], 
+    'depends': ['base', 'website_crm_partner_assign', 'contacts', 'sign', 'survey', 'base_address_extended'], 
 
     # always loaded
     'data': [
