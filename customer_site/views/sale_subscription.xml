@@ -4,7 +4,7 @@
   <record id="sale_subscription_inherit_customer_site" model="ir.ui.view">
     <field name="name">sale.subscription.inherit.customer.site</field>
     <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form"/>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_primary_form_view"/>
     <field name="arch" type="xml">
 
       <xpath expr="//field[@name='order_lines']/tree[1]/field[@name='product_template_id']" position="after">
