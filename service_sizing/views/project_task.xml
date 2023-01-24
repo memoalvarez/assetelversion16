@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="project_task_inherit_service_sizing" model="ir.ui.view">
+    <field name="name">project.task.inherit.service.sizing</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='action_open_parent_task']" position="before">
+            <button type="object" name="action_view_lead" class="oe_stat_button" icon="fa-money" attrs="{'invisible': [('lead_id', '=', False)]}" string="Oportunidad"/>
+            <field name="lead_id" invisible="1"/>
+        </xpath>
+
+        <xpath expr="//div[@name='button_box']" position="after">
+          <widget name="web_ribbon" title="Factible" attrs="{'invisible': ['|', ('servicio_factible', '=', False), ('estudio_completado', '=', False)]}"/>
+          <widget name="web_ribbon" bg_color="bg-danger" title="No factible" attrs="{'invisible': ['|', ('servicio_factible', '=', True), ('estudio_completado', '=', False)]}"/>
+          <field name="servicio_factible" invisible="1"/>
+          <field name="estudio_completado" invisible="1"/>
+        </xpath>
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+            <button name="set_factible" string="Servicio factible" type="object" class="oe_highlight" attrs="{'invisible': [('sizing_task', '=', False)]}" groups="access_rights_assetel.assetel_ingenieria_coordinador"/>
+            <button name="set_no_factible" string="Servicio no factible" type="object" class="oe_highlight" attrs="{'invisible': [('sizing_task', '=', False)]}" groups="access_rights_assetel.assetel_ingenieria_coordinador"/>
+        </xpath>
+
+        <xpath expr="//field[@name='date_deadline']" position="before">
+            <field name="sizing_task" invisible="1"/>
+            <field name="attached_document" widget="many2many_binary" attrs="{'invisible': [('sizing_task', '=', False)]}"/>
+        </xpath>
+     
+    </field>
+  </record>
+
+  <!-- VISTA ARBOL PARA PROJECT.TASK DESDE CRM -->
+
+  <record id="project_task_tree_from_crm" model="ir.ui.view">
+    <field name="name">project.task.tree.from.crm</field> 
+    <field name="model">project.task</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="partner_id"/>
+        <field name="project_id"/>
+        <field name="user_ids"/>
+      </tree>
+    </field> 
+  </record>
+
+    <!-- VISTA FORMULARIO PARA PROJECT.TASK DESDE CRM-->
+
+  <record id="project_task_form_from_crm" model="ir.ui.view"> 
+    <field name="name">project.task.from.crm</field> 
+    <field name="model">project.task</field>
+    <field name="arch" type="xml">
+      <form string="Dimensionamiento">
+          <header>
+            <field name="stage_id" widget="statusbar"/>
+          </header>
+          <sheet>
+              <group>
+              <widget name="web_ribbon" title="Factible" attrs="{'invisible': ['|', ('servicio_factible', '=', False), ('estudio_completado', '=', False)]}"/>
+              <widget name="web_ribbon" bg_color="bg-danger" title="No factible" attrs="{'invisible': ['|', ('servicio_factible', '=', True), ('estudio_completado', '=', False)]}"/>
+              <field name="servicio_factible" invisible="1"/>
+            <field name="estudio_completado" invisible="1"/>
+                <div class="oe_title">
+                  <h1>
+                    <field name="name" placeholder="Nombre"/>
+                  </h1>
+                </div>
+              </group>
+
+              <group></group>
+
+              <group>
+                <group>
+                  <field name="project_id" readonly="1"/>
+                  <field name="attached_document" widget="many2many_binary" readonly="1"/>
+                </group>
+                <group>
+                  <field name="partner_id" readonly="1"/>
+                  <field name="user_ids" readonly="1"/>
+                </group>
+              </group>
+              <group>
+                <field name="description"/>
+              </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+
+  <record id="get_project_task_sizing_view" model="ir.actions.act_window">
+      <field name="name">Dimensionamientos</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">project.task</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_id" eval="project_task_tree_from_crm"/>
+      <field name="help" type="html">
+          <p class="o_view_nocontent_smiling_face">
+              Crea un nuevo dimensionamiento
+          </p>
+      </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_corporate_group" model="ir.ui.view">
+    <field name="name">res.partner.inherit.corporate.group</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='category_id']" position="after">
+        <field name="corporate_group_id"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="crm_lead_inherit_customer_registration" model="ir.ui.view">
+    <field name="name">crm.lead.inherit.customer.registration</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+            <button name="new_ticket_customer" string="Solicitar registro de cliente" type="object" class="oe_highlight" attrs="{'invisible': [('partner_id', '!=', False)]}"/>
+        </xpath>
+
+        <xpath expr="//button[@name='action_schedule_meeting']" position="before">
+          <button type="object" name="action_view_ticket_customer" class="oe_stat_button" icon="fa-life-ring" attrs="{'invisible': [('ticket_count', '=', 0)]}">
+            <field string="Ticket registro cliente" name="ticket_count" widget="statinfo"/>
+          </button>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
+

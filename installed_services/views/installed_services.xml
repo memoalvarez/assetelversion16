@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA INSTALLED.SERVICES -->
+
+  <record id="installed_services_tree" model="ir.ui.view">
+    <field name="name">installed.services.tree</field> 
+    <field name="model">installed.services</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="product_id"/>
+        <field name="empresarial_group"/>
+        <field name="partner_id"/>
+        <field name="site"/>
+        <field name="stage"/>
+        <field name="service_vig"/>
+        <field name="contrato_vig"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA MAPA PARA INSTALLED.SERVICES 
+
+  <record id="installed_services_map" model="ir.ui.view">
+    <field name="name">installed.services.map</field> 
+    <field name="model">installed.services</field>
+    <field name="arch" type="xml">
+      <map res_partner="site" default_order="create_date" routing="true">
+        <marker-popup>
+          <field name="name" string="No de servicio"/>
+          <field name="partner_id" string="Cliente"/>
+          <field name="site" string="Sitio"/>
+          <field name="product_id" string="Servicio"/>
+        </marker-popup>
+      </map>
+    </field> 
+  </record>-->
+
+
+  <!-- VISTA FORMULARIO PARA INSTALLED.SERVICES-->
+
+  <record id="installed_services_form" model="ir.ui.view"> 
+    <field name="name">installed.services.form</field> 
+    <field name="model">installed.services</field>
+    <field name="arch" type="xml">
+      <form string="Número de servicio">
+          <header>
+              <button name="new_ticket" string="Nuevo ticket" type="object" class="oe_highlight" groups="access_rights_assetel.installed_services_nuevo_ticket"/>
+              <button name="suspend_service" confirm="Se suspendera el servicio, ¿Estas seguro?" string="Suspender servicio" attrs="{'invisible': [('stage', '=', 'discontinued')]}" type="object" class="oe_highlight" groups="access_rights_assetel.installed_services_suspender_servicio"/>
+              <button name="activate_service" confirm="Se activara el servicio, ¿Estas seguro?" string="Activar servicio" attrs="{'invisible': [('stage', '=', 'active')]}" type="object" class="oe_highlight" groups="access_rights_assetel.installed_services_activar_servicio"/>
+              <field name="stage" widget="statusbar" statusbar_visible="installed,active,discontinued,disabled"/>
+          </header>
+          <sheet>
+              <div class="oe_button_box" name="button_box">
+                <button class="oe_stat_button" icon="fa-gear" name="open_service_configuration" type="object" string="Configuración"></button>
+                <button type="object" name="action_view_tickets" class="oe_stat_button" icon="fa-circle-o" attrs="{'invisible': [('ticket_count', '=', 0)]}">
+                  <field string="Tickets" name="ticket_count" widget="statinfo"/>
+                </button>
+              </div>
+
+              <group>
+                <div class="oe_title">
+                  <h1>
+                    <field name="name" readonly="1" placeholder="Numero de servicio"/>
+                  </h1>
+                </div>
+              </group>
+
+              <group></group>
+
+              <group name="info_1">
+                <group>
+                  <field name="service_type"/>
+                  <field name="product_id"/>
+                  <field name="description"/>
+                </group>
+                <group>
+                  <field name="empresarial_group"/>
+                  <field name="partner_id" domain="[('type', '!=', 'site'), '|', ('empresarial_group_id', '=?', empresarial_group), ('parent_id.empresarial_group_id', '=?', empresarial_group)]"/>
+                  <field name="razon_social_id" domain="[('type', '=', 'invoice'), ('parent_id', '=?', partner_id)]"/>
+                  <field name="site" domain="[('type', '=', 'site'), ('parent_id', '=?', partner_id), ('parent_id.empresarial_group_id', '=?', empresarial_group)]"/>
+                </group>
+              </group>
+
+
+              <group name="info_2">
+                <group name="campos_comercial">
+                  <field name="encargado_comercial"/>
+                  <field name="ingeniero_asignado"/>
+                </group>
+
+                <group name="libres">
+                 
+                </group>
+              </group>
+
+              <group name="info_2">
+                <group name="campos_info_serv">
+                  <field name="service_price_unit" groups="access_rights_assetel.assetel_finanzas_mesa_control"/>
+                  <field name="service_vig"/>
+                  <field name="contrato_vig"/>
+                </group>
+
+                <group name="libres_2">
+                 
+                </group>
+              </group>
+
+              <group>
+                <field name="notes"/>
+              </group>
+
+              <group></group>
+
+              <notebook>
+                <page name="installed_equipment" string="Equipos instalados">
+                  <group>
+                    <field name="lot_ids" readonly="0" nolabel="1" widget="one2many_list">
+                      <tree editable="bottom">
+                        <field name="name" readonly="1"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="ref" string="Notas" readonly="0"/>
+                      </tree>
+                    </field>
+                  </group>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+
+  <!-- VISTA SEARCH PARA INSTALLED.SERVICES-->
+  <record id="installed_services_search" model="ir.ui.view">
+        <field name="name">installed.services.search</field>
+        <field name="model">installed.services</field>
+        <field name="arch" type="xml">
+            <search string="Servicios activos">
+                <field name="name"/>
+                <field name="product_id"/>
+                <field name="empresarial_group"/>
+                <field name="partner_id"/>
+                <field name="site"/>
+
+                <filter name="installed" string="Instalado" domain="[('stage','=','installed')]"/>
+                <filter name="active" string="Activo" domain="[('stage','=','active')]"/>
+                <filter name="discontinued" string="Suspendido" domain="[('stage','=','discontinued')]"/>
+                <filter name="disabled" string="Inactivo" domain="[('stage','=','disabled')]"/>
+                <separator/>
+                <filter name="formal" string="Formal" domain="[('installation_type','=','formal')]"/>
+                <filter name="cortesia" string="Cortesía" domain="[('installation_type','=','cortesia')]"/>
+                <filter name="temporal" string="Temporal" domain="[('installation_type','=','temporal')]"/>
+                <filter name="infraestructura" string="Infraestructura" domain="[('installation_type','=','infraestructura')]"/>
+                <separator/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Grupo empresarial" name="empresarial_group" domain="[]" context="{'group_by':'empresarial_group'}"/>
+                    <filter string="Cliente" name="partner_id" domain="[]" context="{'group_by':'partner_id'}"/>
+                    <filter string="Sitio" name="site" domain="[]" context="{'group_by':'site'}"/>
+                    <filter string="Servicio" name="product_id" domain="[]" context="{'group_by': 'product_id'}"/>
+                    <filter string="Estado" name="stage" domain="[]" context="{'group_by': 'stage'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+</odoo>

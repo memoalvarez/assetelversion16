@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_assetel_followup" model="ir.ui.view">
+    <field name="name">res.partner.inherit.assetel.followup</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="account_followup.customer_statements_form_view"/>
+    <field name="arch" type="xml">
+        <xpath expr="//form[1]/sheet[1]" position="before">
+          <header>
+              <button name="action_report_send" string="Enviar por correo electrónico" type="object" class="oe_highlight"/>
+          </header>
+        </xpath>
+    </field>
+  </record>
+
+</odoo>

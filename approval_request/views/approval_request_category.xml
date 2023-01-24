@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- VISTA ARBOL PARA APPROVAL.REQUEST.CATEGORY -->
+
+  <record id="approval_request_category_tree" model="ir.ui.view">
+    <field name="name">approval.request.category.tree</field> 
+    <field name="model">approval.request.category</field>
+    <field name="arch" type="xml">
+      <tree editable="top">
+        <field name="name"/>
+        <field name="approval_category_id"/>
+      </tree>
+    </field> 
+  </record>
+
+</odoo>

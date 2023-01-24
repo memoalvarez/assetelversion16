@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_assetel_invoicing" model="ir.ui.view">
+    <field name="name">res.partner.inherit.assetel.invoicing</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="account.view_partner_property_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='property_payment_term_id']" position="after">
+        <field name="l10n_mx_edi_payment_method_id"/>
+        <field name="l10n_mx_edi_usage"/>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="res_partner_inherit_assetel_invoicing_2" model="ir.ui.view">
+    <field name="name">res.partner.inherit.assetel.invoicing.2</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='vat']" position="attributes">
+        <attribute name="attrs"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

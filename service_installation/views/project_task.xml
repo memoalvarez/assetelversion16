@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="project_task_inherit_service_installation" model="ir.ui.view">
+    <field name="name">project.task.inherit.service.installation</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='action_open_parent_task']" position="before">
+            <button type="object" name="action_view_sign_templates" class="oe_stat_button" icon="fa-sticky-note" attrs="{'invisible': [('sign_template', '=', False)]}" string="Plantilla de reporte de servicio"/>
+            <field name="sign_template" invisible="1"/>
+            <button type="object" name="action_view_sign_request" class="oe_stat_button" icon="fa-pencil" attrs="{'invisible': [('sign_request', '=', False)]}" string="Solicitud de firma"/>
+            <field name="sign_request" invisible="1"/>
+            <button type="object" name="action_view_mrp" class="oe_stat_button" icon="fa-wrench" attrs="{'invisible': [('mrp_production', '=', False)]}" string="Orden de fabricación"/>
+            <field name="mrp_production" invisible="1"/>
+            <button type="object" name="action_view_installed_service" class="oe_stat_button" icon="fa-sun-o" attrs="{'invisible': [('service_number', '=', False)]}" string="Número de servicio"/>
+            <field name="service_number" invisible="1"/>
+        </xpath>
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+            <field name="mrp_stage" invisible="1"/>
+            <field name="service_registration_stage" invisible="1"/>
+            <button name="new_mrp" string="Nueva orden de fabricación" type="object" class="oe_highlight" attrs="{'invisible': ['|',('mrp_stage', '=', False), ('mrp_production', '!=', False)]}" groups="access_rights_assetel.proyecto_orden_fabricacion"/>
+            <button name="new_installed_service" string="Registrar Servicio" type="object" class="oe_highlight" attrs="{'invisible': ['|',('service_registration_stage', '=', False), ('service_number', '!=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
+            <button name="createandopen_signature_request" string="Generar reporte de servicio" type="object" class="oe_highlight" attrs="{'invisible':[('mrp_stage', '!=', True)]}"/>
+        </xpath>
+
+        <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="site" readonly="1"/>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

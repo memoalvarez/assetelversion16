@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="project_task_inherit_service_modification" model="ir.ui.view">
+    <field name="name">project.task.inherit.service.modification</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='email_from']" position="after">
+            <field name="modification_service_number"/>
+        </xpath>
+
+        <xpath expr="//div[@class='oe_button_box']" position="after">
+            <div class="badge-pill badge-warning float-right" attrs="{'invisible': [('modification_service_number', '=', False)]}">Modificación de servicio</div>
+        </xpath>
+     
+    </field>
+  </record>
+
+  <record id="project_task_inherit_2_service_modification" model="ir.ui.view">
+    <field name="name">project.task.inherit.2.service.modification</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="service_installation.project_task_inherit_service_installation"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+          <button name="modify_service" string="Modificar Servicio" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', '|', ('demo_task', '!=', False), ('service_registration_stage', '=', False), ('service_number', '!=', False), ('modification_service_number', '=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
+        </xpath>
+
+        <xpath expr="//button[@name='new_installed_service']" position="attributes">
+            <field name="active_demo_service" invisible="1"/>
+            <attribute name="attrs">{'invisible': ['|', '|', '|', '|', ('demo_task', '!=', False), ('service_registration_stage', '=', False), ('service_number', '!=', False), ('active_demo_service', '!=', False), ('modification_service_number', '!=', False)]}</attribute>
+        </xpath>
+
+    </field>
+  </record>
+</odoo>

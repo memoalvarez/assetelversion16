@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_installed_services" model="ir.ui.view">
+    <field name="name">res.partner.inherit.installed.services</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//div[@name='button_box']" position="inside">
+        <button type="object" name="action_view_services" class="oe_stat_button" icon="fa-gears" attrs="{'invisible': [('services_count', '=', 0)]}">
+          <field string="Servicios" name="services_count" widget="statinfo"/>
+        </button>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

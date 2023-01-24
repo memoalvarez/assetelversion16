@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="project_task_type_inherit_service_unbuild" model="ir.ui.view">
+    <field name="name">project.task.type.inherit.service.unbuild</field>
+    <field name="model">project.task.type</field>
+    <field name="inherit_id" ref="service_sizing.project_task_type_inherit_service_sizing"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='end_sizing']" position="after">
+            <field name="deactivate_service_stage"/>
+        </xpath>
+        
+    </field>
+  </record>
+</odoo>

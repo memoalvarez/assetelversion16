@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA HISTORY.SERVICE.INFORMATION -->
+
+  <record id="history_service_information_tree" model="ir.ui.view">
+    <field name="name">history.service.information.tree</field> 
+    <field name="model">history.service.information</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="installed_service_id"/>
+        <field name="service_type"/>
+      </tree>
+    </field> 
+  </record>
+
+
+  <!-- VISTA FORMULARIO PARA HISTORY.SERVICE.INFORMATION-->
+
+  <record id="history_service_information_form" model="ir.ui.view"> 
+    <field name="name">history.service.information.form</field> 
+    <field name="model">history.service.information</field>
+    <field name="arch" type="xml">
+      <form string="Información de servicio">
+          <sheet>
+             
+              <group>
+                <div class="oe_title">
+                  <h1>
+                    <field name="service_type" readonly="1" nolabel="1"/>
+                  </h1>
+                </div>
+              </group>
+
+              <group/>
+
+              <!--SAE-->
+              <group attrs="{'invisible': [('service_type', '!=', 'sae')]}">
+                <field name="sae_type" widget="radio" options="{'horizontal': true}"/>
+              </group>
+                
+              <!--SAE FIREWALL-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'firewall'), ('service_type', '!=', 'sae')]}">
+                <group>
+                  <field name="sae_portal"/>
+                  <field name="sae_host"/>
+                </group>
+
+                <group>
+                  <field name="sae_usuario"/>
+                  <field name="sae_contrasena"/>
+                </group>
+              </group>
+
+              <!--SAE SWITCH-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'switch'), ('service_type', '!=', 'sae')]}">
+                <group>
+                  <field name="sae_direccion_ip"/>
+                  <field name="sae_mascara"/>
+                </group>
+
+                <group>
+                  <field name="sae_usuario"/>
+                  <field name="sae_contrasena"/>
+                </group>
+              </group>
+
+
+              <!--SAE AP-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'ap'), ('service_type', '!=', 'sae')]}">
+                <group>
+                  <field name="sae_portal"/>
+                </group>
+
+                <group>
+                  <field name="sae_usuario"/>
+                  <field name="sae_contrasena"/>
+                </group>
+              </group>
+
+              <!--SAE LICENCIAS-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'licencia'), ('service_type', '!=', 'sae')]}">
+                <group>
+                  <field name="sae_licencia"/>
+                  <field name="sae_numero_licencias"/>
+                </group>
+
+                <group>
+                  <field name="cloud_tipo"/>
+                  <field name="cloud_vigencia"/>
+                </group>
+              </group>
+
+              <!--SAE DE CLIENTE-->
+              <group attrs="{'invisible': [('service_type', '!=', 'sae_client')]}">
+                <field name="sae_type" widget="radio" options="{'horizontal': true}"/>
+              </group>
+                
+              <!--SAE FIREWALL-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'firewall'), ('service_type', '!=', 'sae_client')]}">
+                <group>
+                  <field name="sae_portal"/>
+                </group>
+
+                <group>
+                  <field name="sae_usuario"/>
+                  <field name="sae_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'firewall'), ('service_type', '!=', 'sae_client')]}">
+                <group>
+                  <field name="sae_equipo"/>
+                </group>
+
+                <group>
+                  <field name="sae_serie"/>
+                  <field name="sae_licencia"/>
+                </group>
+              </group>
+
+
+              <!--SAE SWITCH-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'switch'), ('service_type', '!=', 'sae_client')]}">
+                <group>
+                  <field name="sae_direccion_ip"/>
+                  <field name="sae_mascara"/>
+                </group>
+
+                <group>
+                  <field name="sae_usuario"/>
+                  <field name="sae_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'switch'), ('service_type', '!=', 'sae_client')]}">
+                <group>
+                  <field name="sae_equipo"/>
+                </group>
+
+                <group>
+                  <field name="sae_serie"/>
+                  <field name="sae_licencia"/>
+                </group>
+              </group>
+
+
+              <!--SAE AP-->
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'ap'), ('service_type', '!=', 'sae_client')]}">
+                <group>
+                  <field name="sae_portal"/>
+                </group>
+
+                <group>
+                  <field name="sae_usuario"/>
+                  <field name="sae_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('sae_type', '!=', 'ap'), ('service_type', '!=', 'sae_client')]}">
+                <group>
+                  <field name="sae_equipo"/>
+                </group>
+
+                <group>
+                  <field name="sae_serie"/>
+                  <field name="sae_licencia"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD-->
+              <group attrs="{'invisible': [('service_type', '!=', 'connectivity')]}">
+                <field name="conectividad_type" widget="radio" options="{'horizontal': true}"/>
+              </group>
+
+              <!--CONECTIVIDAD DEDICADO-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'dedicado'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_portal"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_usuario"/>
+                  <field name="conectividad_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'dedicado'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD PRO-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'pro'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_portal"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_usuario"/>
+                  <field name="conectividad_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'pro'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD PLUS-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'plus'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_portal"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_usuario"/>
+                  <field name="conectividad_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'plus'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD STARTUP-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'startup'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_portal"/>
+                  <label for="conectividad_bw_down"  string="Ancho de banda"/>
+                  <div>
+                      <field name="conectividad_bw_down" style="width:20%" nolabel="1"/>
+                      <span style="width:20%"> DOWN</span>
+                      <field name="conectividad_bw_up" style="width:20%; margin-left:15%" nolabel="1"/>
+                      <span style="width:20%"> UP</span>
+                  </div>
+                </group>
+
+                <group>
+                  <field name="conectividad_usuario"/>
+                  <field name="conectividad_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'startup'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                  <field name="conectividad_admin_router" widget="radio" options="{'horizontal': true}"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD METROPOLITANO-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'metropolitano'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_portal"/>
+                  <field name="conectividad_pop"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_usuario"/>
+                  <field name="conectividad_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'metropolitano'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_punto_a"/>
+                  <field name="conectividad_punto_b"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_direccion_ip_a"/>
+                  <field name="conectividad_direccion_ip_b"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'metropolitano'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_mascara"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD CNV-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'cnv'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_portal"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_usuario"/>
+                  <field name="conectividad_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'cnv'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD PAQ. IPV4-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'paq1'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                </group>
+              </group>
+
+
+              <!--CONECTIVIDAD CNV PAQ. IPV4-->
+              <group attrs="{'invisible': ['|', ('conectividad_type', '!=', 'paq2'), ('service_type', '!=', 'connectivity')]}">
+                <group>
+                  <field name="conectividad_direccion_ip"/>
+                  <field name="conectividad_mascara"/>
+                  <field name="conectividad_puerta_de_enlace"/>
+                </group>
+
+                <group>
+                  <field name="conectividad_dns_1"/>
+                  <field name="conectividad_dns_2"/>
+                  <field name="conectividad_pop"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD-->
+              <group attrs="{'invisible': [('service_type', '!=', 'cloud')]}">
+                <field name="cloud_type"/>
+              </group>
+
+
+              <!--CLOUD MAQUINA VIRTUAL-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'maquina_virtual'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_sistema_operativo"/>
+                  <field name="cloud_direccion_ip"/>
+                  <field name="cloud_direccion_ip_externa"/>
+                </group>
+
+                <group>
+                  <field name="cloud_hostname"/>
+                  <field name="cloud_software"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'maquina_virtual'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_vcore"/>
+                </group>
+
+                <group>
+                  <field name="cloud_hd"/>
+                  <field name="cloud_ram"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'maquina_virtual'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_vpn_p2p"/>
+                </group>
+
+                <group>
+                  <field name="cloud_usuario_vpn_ssl"/>
+                  <field name="cloud_contrasena_vpn_ssl"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'maquina_virtual'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_usuario_so"/>
+                </group>
+
+                <group>
+                  <field name="cloud_contrasena_so"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD COUBICACION-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'coubicacion'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_ur"/>
+                  <field name="cloud_ubicacion_rack_dc"/>
+                </group>
+
+                <group>
+                  <field name="cloud_ancho_de_banda"/>
+                  <field name="cloud_firewall"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD CORREO ELECTRONICO-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'correo_electronico'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_cuentas"/>
+                  <field name="cloud_dominio"/>
+                </group>
+
+                <group>
+                  <field name="cloud_capacidad"/>
+                  <field name="cloud_direccion_ip"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'correo_electronico'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_portal_filtrado"/>
+                </group>
+
+                <group>
+                  <field name="cloud_portal_filtrado_usuario"/>
+                  <field name="cloud_portal_filtrado_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'correo_electronico'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_vpn"/>
+                </group>
+
+                <group>
+                  <field name="cloud_vpn_usuario"/>
+                  <field name="cloud_vpn_contrasena"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'correo_electronico'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_zimbra_cpanel"/>
+                </group>
+
+                <group>
+
+                </group>
+              </group>
+
+
+              <!--CLOUD BACKUP-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'backup'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_almacenamiento"/>
+                  <field name="cloud_tecnologia"/>
+                </group>
+
+                <group>
+                  <field name="cloud_cliente"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD HOSTING-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'hosting'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_dominio"/>
+                </group>
+
+                <group>
+                  <field name="cloud_res"/>
+                  <field name="cloud_admin"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD TELEFONIA-->
+              <group  attrs="{'invisible': ['|', ('cloud_type', '!=', 'telefonia'), ('service_type', '!=', 'cloud')]}">
+                <field name="cloud_numeros_extensiones">
+                  <tree string="Numeros" editable="bottom">
+                    <field name="numero"/>
+                    <field name="extension"/>
+                  </tree>
+                </field>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'telefonia'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_canales"/>
+                  <field name="cloud_paquetes_llamadas"/>
+                </group>
+
+                <group>
+                  <field name="cloud_did"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'telefonia'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_cantidad"/>
+                  <field name="cloud_consumo"/>
+                </group>
+
+                <group>
+                  <field name="cloud_estado"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD SAE-->
+              <group  attrs="{'invisible': ['|', ('cloud_type', '!=', 'sae'), ('service_type', '!=', 'cloud')]}">
+                <field name="cloud_numeros_extensiones">
+                  <tree string="Numeros" editable="bottom">
+                    <field name="numero"/>
+                    <field name="extension"/>
+                  </tree>
+                </field>
+              </group>
+
+              <group  attrs="{'invisible': ['|', ('cloud_type', '!=', 'sae'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_modelo"/>
+                </group>
+
+                <group>
+                  <field name="cloud_cantidad"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'sae'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_direccion_ip"/>
+                </group>
+
+                <group>
+                  <field name="cloud_mascara"/>
+                  <field name="cloud_puerta_de_enlace"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'sae'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_e1"/>
+                  <field name="cloud_fxo_fxs"/>
+                </group>
+
+                <group>
+                  <field name="cloud_sip"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD LICENCIAS-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'licencias'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_licencia"/>
+                </group>
+
+                <group>
+                  <field name="cloud_tipo"/>
+                  <field name="cloud_vigencia"/>
+                </group>
+              </group>
+
+
+              <!--CLOUD DOMINIO-->
+              <group attrs="{'invisible': ['|', ('cloud_type', '!=', 'dominio'), ('service_type', '!=', 'cloud')]}">
+                <group>
+                  <field name="cloud_dominio"/>
+                </group>
+
+                <group>
+                  <field name="cloud_vigencia"/>
+                </group>
+              </group>
+
+
+              <!--INGENIERIA-->
+              <group attrs="{'invisible': [('service_type', '!=', 'engineering')]}">
+                <group>
+                  <field name="ingenieria_nombre_proyecto"/>
+                </group>
+
+                <group>
+                  <field name="ingenieria_inicio"/>
+                  <field name="ingenieria_fin"/>
+                </group>
+              </group>
+
+
+              <group attrs="{'invisible': [('service_type', '!=', 'poliza')]}">
+                <field name="poliza_type" widget="radio" options="{'horizontal': true}"/>
+              </group>
+
+
+              <!--POLIZA CONECTIVIDAD-->
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'conectividad'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_condiciones"/>
+                </group>
+
+                <group>
+                  <field name="poliza_soporte_dxh"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'conectividad'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_contratados"/>
+                  <field name="poliza_restantes"/>
+                </group>
+
+                <group>
+                  <field name="poliza_utilizados"/>
+                  <field name="cloud_vigencia"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'conectividad'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_sitio" domain="[('type', '=', 'site')]"/>
+                </group>
+
+                <group>
+
+                </group>
+              </group>
+
+
+              <!--POLIZA SAE-->
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'sae'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_condiciones"/>
+                </group>
+
+                <group>
+
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'sae'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_contratados"/>
+                  <field name="poliza_restantes"/>
+                </group>
+
+                <group>
+                  <field name="poliza_utilizados"/>
+                  <field name="cloud_vigencia"/>
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'sae'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_equipo"/>
+                </group>
+
+                <group>
+                  <field name="poliza_serie"/>
+                  <field name="poliza_licencia"/>
+                </group>
+              </group>
+
+
+              <!--POLIZA CLOUD-->
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'cloud'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_condiciones"/>
+                </group>
+
+                <group>
+
+                </group>
+              </group>
+
+              <group attrs="{'invisible': ['|', ('poliza_type', '!=', 'cloud'), ('service_type', '!=', 'poliza')]}">
+                <group>
+                  <field name="poliza_contratados"/>
+                  <field name="poliza_restantes"/>
+                </group>
+
+                <group>
+                  <field name="poliza_utilizados"/>
+                  <field name="cloud_vigencia"/>
+                </group>
+              </group>
+
+              <group/>
+
+              <group>
+                <field name="notes_info"/>
+              </group>
+              
+          </sheet>
+      </form>
+    </field> 
+  </record>
+
+  <!-- ACTION PARA HISTORY.SERVICE.INFORMATION -->
+
+  <record id="get_history_service_information_view" model="ir.actions.act_window">
+        <field name="name">Historial de informacion del servicio</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">history.service.information</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea un nuevo registro
+            </p>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sign_request_inherit_assetel_reports" model="ir.ui.view">
+    <field name="name">sign.request.inherit.assetel.reports</field>
+    <field name="model">sign.request</field>
+    <field name="inherit_id" ref="sign.sign_request_view_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//div[@name='button_box']" position="inside">
+          <button type="object" name="action_view_task" class="oe_stat_button" icon="fa-cubes" attrs="{'invisible': [('responsive', '=', False)]}" string="Orden de entrega"/>
+          <field name="responsive" invisible="1"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

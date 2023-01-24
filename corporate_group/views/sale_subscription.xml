@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_subscription_inherit_corporate_group" model="ir.ui.view">
+    <field name="name">sale.subscription.inherit.corporate.group</field>
+    <field name="model">sale.subscription</field>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='team_id']" position="after">
+        <field name="corporate_group_id"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="responsive_templates">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="header">
+                        <div style="float: left;">
+                            <img src="/assetel_reports/static/src/img/logo_assetel.png" alt="Assetel" width="250px"/>
+                        </div>
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; color: #595959; font-weight: bold">ENTREGA DE MATERIAL LABORAL</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div style="float: right;">
+                            <table>
+                                <tr>
+                                    <td style="text-align: right; padding-right: 10px; font-weight: bold">Guadalajara Jalisco, a <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')"/></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div style="text-align:justify">
+                            <p>Por este medio hago constar que debido a mis funciones como<span style="color:#FFFFFF"> x</span><span t-field="o.employee_id.job_id.name"/> recibí de la empresa ASSETEL, S.A. DE C.V. en correcto estado físico y de operación las siguientes herramientas de trabajo:</p>
+                        </div>
+                        <br></br>
+                        <div>
+                            <table border="1" style="width:100%;border-collapse: collapse;"> 
+                                <tr style="font-weight:bold;background-color: #1d3660;border: 1px solid #00000;text-align: center;color:#FFFFFF">
+                                    <td>DESCRIPCIÓN</td>
+                                    <td>SERIE</td>
+                                    <td>OBSERVACIONES</td>
+                                </tr>
+                                <t t-set="count" t-value="0"/>
+                                <t t-foreach="o.move_line_ids_without_package" t-as="line">
+                                        <tr style="border: 1px solid #00000;">
+                                            <td style="width:40%;"><p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span style="color:#FFFFFF">X</span><span t-field="line.product_id.display_name"/></p></td>
+                                            <td style="width:18%;"><p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;font-size:10px"><span style="color:#FFFFFF">X</span><span t-field="line.lot_id.name"/></p></td>
+                                            <td style="width:42%;"><p> </p></td>
+                                        </tr>
+                                        <t t-set="count" t-value="count + 1"/>   
+                                </t>
+                                <t t-set="resta" t-value="10 - count"/>
+                                <t t-foreach="range(resta)" t-as="i">
+                                    <tr style="height:20px;border: 1px solid #00000;"> 
+                                        <td style="padding: 5px 30px 5px 30px;"></td>
+                                        <td style="padding: 5px 30px 5px 30px;"></td>
+                                        <td style="padding: 5px 30px 5px 30px;"></td>
+                                    </tr>
+                                </t>
+                            </table> 
+                        </div>
+                        <br></br>
+                        <div style="text-align:justify">
+                            <p>Quedo enterado que dichas herramientas de trabajo<strong> sólo deben ser utilizadas para actividades relacionadas a mis responsabilidades laborales</strong>, por lo que bajo mi resguardo<strong> debo mantenerlo en el mejor estado físico y de funcionamiento</strong>, evitando aplicar cualquier modificación física y/o de software. También<strong> me comprometo a reportar al área de Soporte Técnico cualquier detalle físico o de funcionamiento de forma inmediata</strong>. Quedo enterado que en caso de no cumplir con estos acuerdos la empresa aplicará la normatividad estipulada en el Reglamento Interior de Trabajo, señalada en el Capítulo 14 “Normas disciplinarias y sanciones”, art. 15 inc. w. En caso de terminación laboral<strong> me comprometo a hacer la entrega de los equipos aquí descritos, así como sus accesorios y componentes</strong> al área de Capital Humano,<strong> quedando en el entendido de que al no entregarlos estos realizaran los debidos descuentos por su valor total a mi finiquito.</strong></p>
+                        </div>
+                        <br></br>
+                        <div>
+                            <p>Atentamente</p>
+                        </div>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <div>
+                            <p style="font-size: 20px !important;"><strong><span t-field="o.partner_id.name"/></strong></p>
+                        </div>
+                        <div style="font-size: 20px !important;color: #FFC000">
+                            <strong><p><span t-field="o.employee_id.job_id.name"/></p></strong>
+                        </div>
+
+                        
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <report id="responsive_template" 
+            string="Responsiva"
+            model="stock.picking"
+            report_type="qweb-pdf"
+            name="assetel_reports.responsive_templates"
+        />
+    </data>
+</odoo>
+
+

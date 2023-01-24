@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- VISTA FORMULARIO  -->
+  <record id="appraisal_smart_view_form" model="ir.ui.view"> 
+    <field name="name">appraisal.smart.view.form</field> 
+    <field name="model">appraisal.smart</field>
+    <field name="arch" type="xml">
+      <form string="Nueva Evaluacion">
+          <sheet>
+              <div class="oe_button_box" name="button_box">
+              </div>
+              <group>
+                <div class="oe_title pr-0">
+                  <h1 class="d-flex flex-row justify-content-between">
+                    <field name="name" class="o_task_name text-truncate" readonly="1" placeholder="Nombre"/>
+                  </h1>
+                </div>
+              </group>                        
+              <group string="Descripción de objectivos">
+                <group>
+                  <field name="stage" invisible='1'/>
+                  <field name="employee_status" invisible="1"/>
+                  <field name="appraisal_period_id" invisible="1"/>
+                  <field name="objetivo_estrategico" required="1" attrs="{'readonly':['|',('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                  <field name="ponderacion" required="1" attrs="{'readonly':['|',('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                  <field name="objetivo" required="1" attrs="{'readonly':['|',('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                </group>
+                <group>
+                  <field name="date_start" required="1" attrs="{'readonly':['|',('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                  <field name="date_end" required="1" attrs="{'readonly':['|',('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                </group>
+              </group>
+              <notebook>
+                <page name="comentario_empleado" string="Comentarios empleado">
+                  <group>
+                    <group>
+                      <field name="resultado_esperado" required="1" attrs="{'readonly':['|',('stage','!=','new'), ('employee_status','!=','empleado')]}"/>
+                    </group>
+                    <group>
+                      <field name="resultado_sugerido" attrs="{'readonly':['|',('stage','!=','proceso'), ('employee_status','!=','empleado')]}"/><!--Agregar filtro correcto de empleado-->
+                    </group>
+                  </group>
+                  <group>
+                    <field name="comentarios_empleado" attrs="{'readonly':['|',('stage','!=','proceso'), ('employee_status','!=','empleado')]}"/>
+                  </group>
+                </page>
+                <page name="comentario_supervisor" string="Comentarios Supervisor">
+                  <group>
+                    <group>
+                      <field name="resultado_obtenido" attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','supervisor')]}"/><!--Agregar filtro correcto de supervisor-->
+                    </group>
+                  </group>
+                  <group>
+                    <field name="comentarios_supervisor" attrs="{'readonly':['|',('stage','!=','evaluacion'), ('employee_status','!=','supervisor')]}"/>
+                  </group>
+                </page>
+              </notebook>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+</odoo>

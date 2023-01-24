@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="account_move_report_inherti_assetel_reports" inherit_id="account.report_invoice_document">
+        <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[1]" position="after">
+            <th>
+                <span>N° Servicio</span>
+            </th>
+            <th>
+                <span>Sitio</span>
+            </th>
+        </xpath>
+        <xpath expr="//table[@name='invoice_line_table']/tbody//tr[1]//td[1]" position="after">
+            <td>
+                <span t-field="line.service_number.name"/>
+            </td>
+            <td>
+                <span t-field="line.site.name"/>
+            </td>
+        </xpath>
+    </template>
+
+</odoo>

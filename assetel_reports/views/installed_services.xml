@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="installed_services_form_inherit_assetel_reports" model="ir.ui.view">
+    <field name="name">installed.services.form.inherit.assetel.reports</field>
+    <field name="model">installed.services</field>
+    <field name="inherit_id" ref="installed_services.installed_services_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='stage']" position="before">
+        <button name="action_report_send" string="Enviar correo de bienvenida" type="object" class="oe_highlight"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>
