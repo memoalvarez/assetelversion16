@@ -3,11 +3,12 @@ import logging
 
 from odoo import models, api, fields
 
-class SaleSubscriptionLine(models.Model):
-    _inherit = 'sale.subscription.line'
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     service_number = fields.Many2one('installed.services', string='N° de servicio')
     contact_id = fields.Many2one('res.partner', string='Contacto')
+    analytic_account_id = fields.Many2one('sale.order', string="Suscripción")
 
     @api.onchange('analytic_account_id')
     def _onchange_analytic_account_id_installed_services(self):
@@ -27,7 +28,7 @@ class SaleSubscriptionLine(models.Model):
 
     @api.onchange('product_id', 'quantity')
     def onchange_product_quantity(self):
-        res = super(SaleSubscriptionLine, self).onchange_product_quantity()
+        res = super(SaleOrderLine, self).onchange_product_quantity()
 
         self.name = self.service_number.description
         self.price_unit = self.service_number.project_task.sale_line_id.price_unit
