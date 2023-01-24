@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from odoo import models, api, fields
 
-class SaleSubscription(models.Model):
-    _inherit = 'sale.subscription'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
     def _prepare_invoice_line(self, line, fiscal_position, date_start=False, date_stop=False):
         tax_ids = line.product_id.taxes_id.filtered(lambda t: t.company_id == line.analytic_account_id.company_id)
