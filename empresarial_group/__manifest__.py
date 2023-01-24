@@ -29,6 +29,6 @@
         'views/helpdesk_ticket.xml',
         'views/res_partner.xml',
         'views/sale_order.xml',
-        'views/sale_subscription.xml',
+        #'views/sale_subscription.xml',
     ],
 }
