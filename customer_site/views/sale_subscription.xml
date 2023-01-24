@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form"/>
     <field name="arch" type="xml">
 
-      <xpath expr="//form[1]/sheet[1]/div[not(@name)][3]/notebook[1]/page[1]/div[1]/field[@name='order_lines']/tree[1]/field[@name='product_template_id']" position="after">
+      <xpath expr="//field[@name='order_lines']/tree[1]/field[@name='product_template_id']" position="after">
         <field name="site" required="1" domain="[('type', '=', 'site')]"/>
       </xpath>
 
