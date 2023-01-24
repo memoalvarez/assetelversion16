@@ -3,7 +3,7 @@ import logging
 
 from odoo import models, api, fields
 
-class StockProductionLot(models.Model):
-    _inherit = 'stock.production.lot'
+class StockLot(models.Model):
+    _inherit = 'stock.lot'
 
     service_number = fields.Many2one('installed.services', string='Numero de servicio')

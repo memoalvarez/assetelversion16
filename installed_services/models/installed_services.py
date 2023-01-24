@@ -34,7 +34,7 @@ class InstalledServices(models.Model):
 
     notes = fields.Html(string='Notas')
 
-    lot_ids = fields.One2many('stock.production.lot', 'service_number', string='Equipos instalados')
+    lot_ids = fields.One2many('stock.lot', 'service_number', string='Equipos instalados')
 
     service_price_unit = fields.Float(string='Precio')
     service_vig = fields.Date(string='Vigencia de servicio')
