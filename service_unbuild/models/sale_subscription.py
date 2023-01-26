@@ -3,8 +3,8 @@ import logging
 
 from odoo import models, api, fields
 
-class SaleSubscription(models.Model):
-    _inherit = 'sale.subscription'
+class SaleOrder(models.Model):
+    _inherit = 'sale.order'
 
 
     @api.depends('recurring_invoice_line_ids')
