@@ -54,43 +54,41 @@
     <field name="model">project.task</field>
     <field name="arch" type="xml">
       <form string="Dimensionamiento">
-          <header>
-            <field name="stage_id" widget="statusbar"/>
-          </header>
-          <sheet>
-              <group>
-              <widget name="web_ribbon" title="Factible" attrs="{'invisible': ['|', ('servicio_factible', '=', False), ('estudio_completado', '=', False)]}"/>
-              <widget name="web_ribbon" bg_color="bg-danger" title="No factible" attrs="{'invisible': ['|', ('servicio_factible', '=', True), ('estudio_completado', '=', False)]}"/>
-              <field name="servicio_factible" invisible="1"/>
+        <header>
+          <field name="stage_id" widget="statusbar"/>
+        </header>
+        <sheet>
+          <group>
+            <widget name="web_ribbon" title="Factible" attrs="{'invisible': ['|', ('servicio_factible', '=', False), ('estudio_completado', '=', False)]}"/>
+            <widget name="web_ribbon" bg_color="bg-danger" title="No factible" attrs="{'invisible': ['|', ('servicio_factible', '=', True), ('estudio_completado', '=', False)]}"/>
+            <field name="servicio_factible" invisible="1"/>
             <field name="estudio_completado" invisible="1"/>
-                <div class="oe_title">
-                  <h1>
-                    <field name="name" placeholder="Nombre"/>
-                  </h1>
-                </div>
-              </group>
+            <div class="oe_title">
+              <h1>
+                <field name="name" placeholder="Nombre"/>
+              </h1>
+            </div>
+          </group>
 
-              <group></group>
-
-              <group>
-                <group>
-                  <field name="project_id" readonly="1"/>
-                  <field name="attached_document" widget="many2many_binary" readonly="1"/>
-                </group>
-                <group>
-                  <field name="partner_id" readonly="1"/>
-                  <field name="user_ids" readonly="1"/>
-                </group>
-              </group>
-              <group>
-                <field name="description"/>
-              </group>
-          </sheet>
-          <div class="oe_chatter">
-            <field name="message_follower_ids" widget="mail_followers"/>
-            <field name="activity_ids" widget="mail_activity"/>
-            <field name="message_ids" widget="mail_thread"/>
-          </div>
+          <group>
+            <group>
+              <field name="project_id" readonly="1"/>
+              <field name="attached_document" widget="many2many_binary" readonly="1"/>
+            </group>
+            <group>
+              <field name="partner_id" readonly="1"/>
+              <field name="user_ids" readonly="1"/>
+            </group>
+          </group>
+          <group>
+            <field name="description"/>
+          </group>
+        </sheet>
+        <div class="oe_chatter">
+          <field name="message_follower_ids" widget="mail_followers"/>
+          <field name="activity_ids" widget="mail_activity"/>
+          <field name="message_ids" widget="mail_thread"/>
+        </div>
       </form>
     </field> 
   </record>
