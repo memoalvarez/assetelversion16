@@ -15,10 +15,11 @@ class SaleOrder(models.Model):
     @api.onchange('sale_considerations')
     def _on_change_sale_considerations(self):
         for reg in self:
-            notas = ' '
-            for consideration in reg.sale_considerations:
-                notas = '\n' + consideration.name + '\n' + consideration.note + '\n\n\n'
+            if reg.sale_considerations:
+                notas = '\n'
+                for consideration in reg.sale_considerations:
+                    notas = notas + consideration.name + '\n' + consideration.note + '\n\n\n'
 
-            reg.note = notas
+                reg.note = notas
 
 
