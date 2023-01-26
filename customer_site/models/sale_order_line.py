@@ -5,7 +5,6 @@ class SaleOrderLine(models.Model):
     _inherit = 'sale.order.line'
 
     site = fields.Many2one('res.partner', string='Sitio')
-
     contact_id = fields.Many2one('res.partner', string='Contacto')
 
 
