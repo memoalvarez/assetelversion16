@@ -63,10 +63,12 @@
             <widget name="web_ribbon" bg_color="bg-danger" title="No factible" attrs="{'invisible': ['|', ('servicio_factible', '=', True), ('estudio_completado', '=', False)]}"/>
             <field name="servicio_factible" invisible="1"/>
             <field name="estudio_completado" invisible="1"/>
-            <div class="oe_title">
-                <field name="name" placeholder="Nombre"/>
-            </div>
           </group>
+          <div class="oe_title">
+            <h1>
+                <field name="name" placeholder="Nombre"/>
+            </h1>
+          </div>
 
           <group>
             <group>
