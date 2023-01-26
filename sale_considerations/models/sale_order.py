@@ -15,7 +15,7 @@ class SaleOrder(models.Model):
     @api.onchange('sale_considerations')
     def _on_change_sale_considerations(self):
         for reg in self:
-            if reg.sale_considerations != False:
+            if reg.sale_considerations:
                 notas = '\n'
                 for consideration in reg.sale_considerations:
                     notas = notas + consideration.name + '\n' + consideration.note + '\n\n\n'
