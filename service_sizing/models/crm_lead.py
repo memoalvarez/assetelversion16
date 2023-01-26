@@ -26,7 +26,7 @@ class CrmLead(models.Model):
             action = self.env.ref('service_sizing.get_project_task_sizing_view').read()[0]
             action['views'] = [(self.env.ref('service_sizing.project_task_form_from_crm').id, 'form')]
             action['context'] = {'default_name': 'DIMENSIONAMIENTO', 'default_project_id': self.company_id.sizing_project_id.id,
-            'default_user_id': self.company_id.sizing_project_id.user_id.id, 'default_partner_id': self.partner_id.id,
+            'default_user_ids': self.company_id.sizing_project_id.user_id.id, 'default_partner_id': self.partner_id.id,
             'default_lead_id': self.id, 'default_sizing_task': True}
             action['target'] = 'new'
             return action
