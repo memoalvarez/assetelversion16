@@ -7,11 +7,11 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
 
-    @api.depends('recurring_invoice_line_ids')
+    @api.depends('invoice_line_ids')
     def _check_unbuild(self):
         for subs in self:
             active_unbuild = False
-            for line in subs.recurring_invoice_line_ids:
+            for line in subs.invoice_line_ids:
                 if line.to_unbuild:
                     active_unbuild = True
 
