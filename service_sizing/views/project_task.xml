@@ -28,6 +28,13 @@
             <field name="sizing_task" invisible="1"/>
             <field name="attached_document" widget="many2many_binary" attrs="{'invisible': [('sizing_task', '=', False)]}"/>
         </xpath>
+        <xpath expr="//field[@name='user_ids']" position="attributes">
+          <attribute name="invisible">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="user_id"/>
+        </xpath>
      
     </field>
   </record>
