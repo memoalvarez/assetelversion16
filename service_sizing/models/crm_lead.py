@@ -20,7 +20,7 @@ class CrmLead(models.Model):
     sizing_task_count = fields.Integer(string='Sizing count', compute='_compute_sizing_ids')
     sizing_task_ids = fields.One2many('project.task', 'lead_id', string='Dimensionamientos')
 
-
+    #FUNCIONA EN VERSION 16
     def new_sizing(self):
         if self.partner_id:
 
