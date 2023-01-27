@@ -8,6 +8,7 @@ class CrmLead(models.Model):
 
     sizing_stage = fields.Boolean(string='Etapa de dimensionamiento', default=False, related='stage_id.sizing_stage')
 
+    #FUNCIONA EN VERSION 16
     def _compute_sizing_ids(self):
         #Se cuentan todos los dimensionamientos de la oportunidad actual#
         for reg in self:
@@ -26,7 +27,7 @@ class CrmLead(models.Model):
             action = self.env.ref('service_sizing.get_project_task_sizing_view').read()[0]
             action['views'] = [(self.env.ref('service_sizing.project_task_form_from_crm').id, 'form')]
             action['context'] = {'default_name': 'DIMENSIONAMIENTO', 'default_project_id': self.company_id.sizing_project_id.id,
-            'default_user_ids': self.company_id.sizing_project_id.user_id.id, 'default_partner_id': self.partner_id.id,
+            'default_user_id': self.company_id.sizing_project_id.user_id.id, 'default_partner_id': self.partner_id.id,
             'default_lead_id': self.id, 'default_sizing_task': True}
             action['target'] = 'new'
             return action
@@ -34,7 +35,7 @@ class CrmLead(models.Model):
         else:
             raise exceptions.ValidationError('Necesitas registrar un cliente')
 
-
+    #FUNCIONA EN VERSION 16
     def action_view_task_sizing(self):
         action = self.env.ref('service_sizing.get_project_task_sizing_view').read()[0]
 
