@@ -42,7 +42,7 @@
         <field name="name"/>
         <field name="partner_id"/>
         <field name="project_id"/>
-        <field name="user_ids"/>
+        <field name="user_id"/>
       </tree>
     </field> 
   </record>

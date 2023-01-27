@@ -7,6 +7,7 @@ class ProjectTask(models.Model):
     _inherit = 'project.task'
 
     sizing_task = fields.Boolean(string='Tarea de dimensionamiento', default=False)
+    user_id = fields.Many2one('res.users', string="Asignado")
     
     lead_id = fields.Many2one('crm.lead', string='Oportunidad')
     attached_document = fields.Many2many('ir.attachment', string='Documento en extenso')   
