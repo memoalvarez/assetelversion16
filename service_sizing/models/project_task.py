@@ -24,19 +24,19 @@ class ProjectTask(models.Model):
             text = '''<div style="margin: 0px; padding: 0px;">
                 <p style="margin: 0px; padding: 0px; font-size: 13px;">
                     Buen día,
-                    <br/><br/>
+                    <br>
                     Se ha creado una nueva tarea de dimensionamiento:
-                    <br/><br/>
+                    <br>
                     Proyecto: ''' + str(result.project_id.name) + '''
-                    <br/>
+                    <br>
                     Nombre: ''' + str(result.name) + '''
-                    <br/>
+                    <br>
                     Oportunidad: ''' + str(result.lead_id.name) + '''
-                    <br/>
+                    <br>
                     Cliente: ''' + str(result.partner_id.name) + '''
-                    <br/>
+                    <br>
                     Descripción: ''' + str(result.description) + '''
-                    <br/><br/>
+                    <br>
                     Saludos.
                 </p>'''
 
@@ -45,6 +45,7 @@ class ProjectTask(models.Model):
         
         return result
 
+    #FUNCIONA EN VERSION 16
     def action_view_lead(self):
         action = self.env.ref('crm.crm_lead_action_pipeline').read()[0]
 
@@ -53,12 +54,13 @@ class ProjectTask(models.Model):
             action['res_id'] = self.lead_id.id
         return action
 
+    #FUNCIONA EN VERSION 16
     def set_factible(self):
         
         self.servicio_factible = True
         self.estudio_completado = True
 
-
+    #FUNCIONA EN VERSION 16
     def set_no_factible(self):
         self.servicio_factible = False
         self.estudio_completado = True
