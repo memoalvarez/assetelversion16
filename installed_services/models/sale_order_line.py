@@ -20,13 +20,13 @@ class SaleOrderLine(models.Model):
     def _onchange_service_number(self):
         for reg in self:
             if reg.service_number:
-                reg.product_id = reg.service_number.product_id.id
+                reg.product_template_id = reg.service_number.product_template_id.id
                 reg.site = reg.service_number.site.id
-                reg.quantity = reg.service_number.project_task.sale_line_id.product_uom_qty
+                reg.product_uom_qty = reg.service_number.project_task.sale_line_id.product_uom_qty
                 reg.discount = reg.service_number.project_task.sale_line_id.discount
 
 
-    @api.onchange('product_id', 'quantity')
+    @api.onchange('product_template_id', 'product_uom_qty')
     def onchange_product_quantity(self):
         res = super(SaleOrderLine, self).onchange_product_quantity()
 
