@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
     def create(self, vals):
         result = super(SaleOrder, self).create(vals)
 
-        for line in result.order_lines:
+        for line in result.order_line:
             line.analytic_account_id = result.id
             if line.service_number:
                 line.service_number.sale_subscription_line = line.id
@@ -24,7 +24,7 @@ class SaleOrder(models.Model):
 
     def write(self, values):
 
-        for line in self.order_lines:
+        for line in self.order_line:
             if line.service_number:
                 line.service_number.sale_subscription_line = False
                 line.service_number.sale_subscription = False
@@ -33,7 +33,7 @@ class SaleOrder(models.Model):
 
         result = super(SaleOrder, self).write(values)
 
-        for line in self.order_lines:
+        for line in self.order_line:
             if line.service_number:
                 line.service_number.sale_subscription_line = line.id
                 line.service_number.sale_subscription = self.id
