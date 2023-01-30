@@ -26,11 +26,3 @@ class SaleOrderLine(models.Model):
                 reg.discount = reg.service_number.project_task.sale_line_id.discount
 
 
-    @api.onchange('product_template_id', 'product_uom_qty')
-    def onchange_product_quantity(self):
-        res = super(SaleOrderLine, self).onchange_product_quantity()
-
-        self.name = self.service_number.description
-        self.price_unit = self.service_number.project_task.sale_line_id.price_unit
-
-        return res

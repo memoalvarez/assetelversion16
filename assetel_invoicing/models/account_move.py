@@ -24,6 +24,6 @@ class AccountMove(models.Model):
 
     def action_post(self):
         result = super(AccountMove, self).action_post()
-        self.invoice_payment_ref = self.partner_id.ref
+        self.payment_reference = self.partner_id.ref
 
         return result
