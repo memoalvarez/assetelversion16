@@ -26,6 +26,6 @@
     'data': [
         'views/account_move.xml',
         'views/res_partner.xml',
-        #'views/website_invoice.xml',
+        'views/website_invoice.xml',
     ],
 }
