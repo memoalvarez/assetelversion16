@@ -4,7 +4,7 @@
     <template id="website_invoice_inherit_payment_online" inherit_id="account_payment.portal_invoice_page_inherit_payment">
       <xpath expr="//a" position="replace">
             <div style="text-align: center;">
-                <a href="#" t-if="invoice.state == 'posted' and invoice.payment_state == 'not_paid' and invoice.amount_total and invoice.move_type == 'out_invoice' and (pending_manual_txs or not tx_ids or invoice.amount_residual) and invoice.pay_online" class="btn btn-primary btn-md btn-block" data-toggle="modal" data-target="#pay_with">
+                <a href="#" t-if="invoice.state == 'posted' and invoice.payment_state == 'not_paid' and invoice.amount_total and invoice.move_type == 'out_invoice' and (pending_manual_txs or not tx_ids or invoice.amount_residual) and invoice.pay_online" class="btn btn-primary btn-block mb-2" data-toggle="modal" data-target="#pay_with">
                     <i class="fa fa-fw fa-arrow-circle-right"/> Pagar ahora
                 </a>
             </div>
