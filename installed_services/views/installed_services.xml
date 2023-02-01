@@ -118,7 +118,7 @@
               <notebook>
                 <page name="installed_equipment" string="Equipos instalados">
                   <group>
-                    <field name="lot_ids" readonly="0" nolabel="1" widget="one2many_list">
+                    <field name="lot_ids" readonly="0" nolabel="1" widget="one2many">
                       <tree editable="bottom">
                         <field name="name" readonly="1"/>
                         <field name="product_id" readonly="1"/>
