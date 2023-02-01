@@ -6,6 +6,7 @@ from odoo import models, api, fields, exceptions
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     
+    #FUNCIONA EN VERSION 16
     def action_confirm(self):
         for so in self:
             for linea in so.order_line:
