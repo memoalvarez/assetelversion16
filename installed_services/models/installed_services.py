@@ -89,7 +89,7 @@ class InstalledServices(models.Model):
         #Campos para crear cuenta analitica
         analytic_account  = {
             'name' : result.name,
-            'partner_id' : result.partner_id.id
+            'partner_id' : result.partner_id.id,
         }
 
         new = self.env['account.analytic.account'].create(analytic_account)
