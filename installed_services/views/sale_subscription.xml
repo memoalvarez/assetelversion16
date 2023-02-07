@@ -8,13 +8,13 @@
     <field name="arch" type="xml">
 
         <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_template_id']" position="before">
-            <field name="analytic_account_id" invisible="1"/>
-            <field name="contact_id" invisible="1"/>
+            <field name="analytic_account_id" invisible="0"/>
+            <field name="contact_id" invisible="0"/>
             <field name="service_number" domain="[('partner_id', '=?', contact_id), ('stage', 'in', ['installed', 'active', 'discontinued'])]"/>
         </xpath>
 
         <xpath expr="//field[@name='partner_id']" position="after">
-          <field name="contact_id" invisible="1"/>
+          <field name="contact_id" invisible="0"/>
         </xpath>
 
      
