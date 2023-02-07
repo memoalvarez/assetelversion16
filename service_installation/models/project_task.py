@@ -48,7 +48,7 @@ class ProjectTask(models.Model):
         
         return result
 
-    
+    #FUNCIONA EN VERSION 16
     def new_mrp(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
         action['views'] = [(self.env.ref('mrp.mrp_production_form_view').id, 'form')]
@@ -58,7 +58,7 @@ class ProjectTask(models.Model):
         return action
 
 
-
+    #FUNCIONA EN VERSION 16
     def new_installed_service(self):
         if self.mrp_production:
             note = '<p>Servicio creado desde:</p><p>Tarea.- ' + self.name + '</p>' + '<p>Orden de fabricacion.- ' + self.mrp_production.name + '</p>'    
@@ -82,7 +82,7 @@ class ProjectTask(models.Model):
         return action
 
 
-
+    #FUNCIONA EN VERSION 16
     def action_view_mrp(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
 
