@@ -30,7 +30,7 @@
         'views/installed_services.xml',
         'views/product_product.xml',
         'views/res_partner.xml',
-        'views/sale_subscription.xml',
+        'views/sale_order.xml',
         'views/service_information_menu.xml',
         'views/service_information.xml',
         'views/stock_production_lot.xml',
