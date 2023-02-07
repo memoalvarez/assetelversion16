@@ -90,6 +90,7 @@ class InstalledServices(models.Model):
         analytic_account  = {
             'name' : result.name,
             'partner_id' : result.partner_id.id,
+            'plan_id' : 1,
         }
 
         new = self.env['account.analytic.account'].create(analytic_account)
