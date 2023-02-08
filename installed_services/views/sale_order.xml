@@ -9,8 +9,8 @@
 
         <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='name']" position="before">
             <field name="is_subscription" invisible="1"/>
-            <field name="analytic_account_id" domain="[('is_subscription', '=', True)]"/>
-            <field name="contact_id" attrs="{'invisible': ['|', ('state', 'in', ['sale', 'done']), ('subscription_management', '=', 'upsell')]}" domain="[('is_subscription', '=', True)]"/>
+            <field name="analytic_account_id" attrs="{'invisible': ['|', ('state', 'in', ['sale', 'done']), ('subscription_management', '=', 'upsell')]}" domain="[('is_subscription', '=', True)]"/>
+            <field name="contact_id" />
         </xpath>
 
         <xpath expr="//field[@name='partner_id']" position="after">
