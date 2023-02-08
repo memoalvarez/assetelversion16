@@ -9,7 +9,7 @@
 
         <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='name']" position="before">
             <field name="analytic_account_id"/>
-            <field name="contact_id">
+            <field name="contact_id" />
             <field name="service_number" domain="[('partner_id', '=?', contact_id), ('stage', 'in', ['installed', 'active', 'discontinued'])]"/>
         </xpath>
 
