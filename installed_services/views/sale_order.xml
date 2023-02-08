@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form"/>
     <field name="arch" type="xml">
 
-        <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_template_id']" position="before">
+        <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_template_id']" position="attributes">
             <field name="analytic_account_id" invisible="0"/>
             <field name="contact_id" invisible="0"/>
             <field name="service_number" domain="[('partner_id', '=?', contact_id), ('stage', 'in', ['installed', 'active', 'discontinued'])]"/>
