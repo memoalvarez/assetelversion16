@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="sale.view_order_form"/>
     <field name="arch" type="xml">
 
-      <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
+      <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_id']" position="attributes">
         <field name="empresarial_group" invisible="1"/>
         <field name="service_number" domain="[('empresarial_group', '=?', empresarial_group)]"/>
       </xpath>
