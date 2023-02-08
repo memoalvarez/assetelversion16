@@ -11,7 +11,6 @@
             <field name="is_subscription" invisible="1"/>
             <field name="analytic_account_id" attrs="{'invisible': ['|', ('state', 'in', ['sale', 'done']), ('subscription_management', '=', 'upsell')]}" domain="[('is_subscription', '=', True)]"/>
             <field name="contact_id" attrs="{'invisible': ['|', ('state', 'in', ['sale', 'done']), ('subscription_management', '=', 'upsell')]}" domain="[('is_subscription', '=', True)]"/>
-            <field name="service_number" domain="[('partner_id', '=?', contact_id), ('stage', 'in', ['installed', 'active', 'discontinued'])]"/>
         </xpath>
 
         <xpath expr="//field[@name='partner_id']" position="after">
