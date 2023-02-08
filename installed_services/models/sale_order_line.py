@@ -9,6 +9,7 @@ class SaleOrderLine(models.Model):
     service_number = fields.Many2one('installed.services', string='N° de servicio')
     contact_id = fields.Many2one('res.partner', string='Contacto')
     analytic_account_id = fields.Many2one('sale.order', string="Suscripción")
+    is_subscription = fields.Boolean(related='order_id.is_subscription')
 
     @api.onchange('analytic_account_id')
     def _onchange_analytic_account_id_installed_services(self):
