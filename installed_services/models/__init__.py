@@ -6,7 +6,7 @@ from . import installed_services
 from . import product_product
 from . import res_partner
 from . import sale_order_line
-from . import sale_subscription
+from . import sale_order
 from . import service_information_cloud
 from . import service_information
 from . import stock_production_lot
