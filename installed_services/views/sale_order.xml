@@ -4,7 +4,7 @@
   <record id="sale_order_inherit_installed_services" model="ir.ui.view">
     <field name="name">sale.order.inherit.installed.services</field>
     <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale_subscription.sale_subscription_order_view_form"/>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_primary_form_view"/>
     <field name="arch" type="xml">
 
         <xpath expr="//page[@name='order_lines']/field/tree/field[@name='product_template_id']" position="attributes">
