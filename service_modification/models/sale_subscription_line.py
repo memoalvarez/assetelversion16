@@ -7,8 +7,8 @@ import pprint
 
 _logger = logging.getLogger(__name__)
 
-class SaleSubscriptionLine(models.Model):
-    _inherit = 'sale.subscription.line'
+class SaleOrderLine(models.Model):
+    _inherit = 'sale.order.line'
 
     to_modify = fields.Boolean(string='Modificacion en proceso', default=False)
 
