@@ -20,7 +20,6 @@ class InstalledServices(models.Model):
         #y se registra entrega en SO
         if result.project_task:
             result.project_task.service_number = result.id
-            result.message_post(body="Servicio instalado", partner_ids=[result.company_id.subscription_user_id.partner_id.id])
             result.project_task.register_equipment()
             if result.project_task.demo_task == False:
                 result.project_task.sale_line_id.qty_delivered = result.project_task.sale_line_id.product_uom_qty

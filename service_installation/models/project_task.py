@@ -59,7 +59,6 @@ class ProjectTask(models.Model):
         return action
 
 
-    #FUNCIONA EN VERSION 16
     def new_installed_service(self):
         if self.mrp_production:
             note = '<p>Servicio creado desde:</p><p>Tarea.- ' + self.name + '</p>' + '<p>Orden de fabricacion.- ' + self.mrp_production.name + '</p>'    
