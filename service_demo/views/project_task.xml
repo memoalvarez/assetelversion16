@@ -25,7 +25,7 @@
 
         <xpath expr="//field[@name='email_from']" position="after">
             <field name="product_id" domain="[('type', '=', 'service'), ('sale_ok', '=', True)]"/>
-            <field name="active_demo_service" attrs="{'invisible': [('active_demo_service', '=', False)]}"/>
+            <field name="active_demo_service" />
         </xpath>
 
         <xpath expr="//div[@class='oe_button_box']" position="after">
