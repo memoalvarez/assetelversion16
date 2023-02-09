@@ -43,7 +43,7 @@ class ProjectTask(models.Model):
                     Saludos.
                 </p>'''
 
-            for line in result.project_id.users_to_notify:
+            for line in result.project_id.favorite_user_ids:
                 result.message_post(body=text, partner_ids=[line.partner_id.id])
         
         return result

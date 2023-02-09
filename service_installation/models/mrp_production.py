@@ -8,7 +8,7 @@ class MrpProduction(models.Model):
 
     project_task = fields.Many2one('project.task', string='Tarea de proyecto')
 
-
+    #FUNCIONA EN VERSION 16
     @api.model
     def create(self, vals):
         result = super(MrpProduction, self).create(vals)
