@@ -14,7 +14,7 @@ class SaleOrder(models.Model):
 
             subs.update({
                 'to_modify' : active_modification
-            })
+            })"""
 
-    to_modify = fields.Boolean(string='Suscripcion con modificacion', default=False, compute='_check_modification')"""
+    to_modify = fields.Boolean(string='Suscripcion con modificacion', default=False, compute='_check_modification')
 
