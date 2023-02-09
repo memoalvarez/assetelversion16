@@ -6,7 +6,7 @@ from odoo import models, api, fields, exceptions
 class ProjectTask(models.Model):
     _inherit = 'project.task'
 
-    modification_service_number = fields.Many2one('installed.services', 'Numero de servicio a modificar')
+    modification_service_number = fields.Many2one('installed.services', string="Numero de servicio a modificar")
 
 
     @api.model
