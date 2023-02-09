@@ -8,8 +8,8 @@ class SaleOrderLine(models.Model):
     
     empresarial_group = fields.Many2one('empresarial.group', string='Grupo empresarial')
 
-
-    @api.onchange('product_uom_qty')
+    #FUNCIONA EN VERSION 16
+    @api.onchange('product_uom_qty', 'product_template_id')
     def _onchange_partner_id_service_installation(self):
         if self.order_id.empresarial_group:
             self.empresarial_group = self.order_id.empresarial_group
