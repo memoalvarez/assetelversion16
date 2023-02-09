@@ -19,6 +19,7 @@ class ProjectTask(models.Model):
 
     site = fields.Many2one('res.partner', string='Sitio', related='sale_line_id.site')
 
+    #FUNCIONA EN VERSION 16
     @api.model
     def create(self, vals):
         result = super(ProjectTask, self).create(vals)
