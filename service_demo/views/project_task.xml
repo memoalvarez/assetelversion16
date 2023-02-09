@@ -30,7 +30,7 @@
 
         <xpath expr="//div[@class='oe_button_box']" position="after">
             <field name="demo_rejected" invisible="1"/>
-            <div class="badge-pill badge-warning float-right" attrs="{'invisible': [('active_demo_service', '=', False)]}">Cliente con Demo</div>
+            <!--div class="badge-pill badge-warning float-right" attrs="{'invisible': [('active_demo_service', '=', False)]}">Cliente con Demo</!div-->
             <widget name="web_ribbon" text="Rechazado" bg_color="bg-danger" attrs="{'invisible': [('demo_rejected', '=', False)]}"/>
         </xpath>
 
