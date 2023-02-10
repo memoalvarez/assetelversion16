@@ -9,8 +9,6 @@ class ProjectTask(models.Model):
 
     demo_task = fields.Boolean(string='Tarea de demo', default=False)
     demo_rejected = fields.Boolean(string='Demo Rechazado', default=False)
-    mrp_stage = fields.Boolean(string='Etapa de fabricación', default=False)
-    service_registration_stage = fields.Boolean(string='Etapa de registro de servicio', default=False)
 
     demo_application_date = fields.Datetime('Fecha solicitud demo')
     demo_installation_date = fields.Datetime('Fecha instalacion demo')
@@ -24,11 +22,6 @@ class ProjectTask(models.Model):
     order_id_demo = fields.Many2one('sale.order', 'Presupuesto')
     sale_order_line_demo = fields.Many2one('sale.order.line', 'Servicio')
     sizing_task_id_demo = fields.Many2one('project.task', 'Dimensionamiento')
-    sign_template = fields.Many2one('sign.template', string='Firma')
-    sign_request = fields.Many2one('sign.request', string='Solicitud de firma')
-    mrp_production = fields.Many2one('mrp.production', string='Orden de fabricación')
-    service_number = fields.Many2one('installed.services', string='Numero de servicio')
-    site = fields.Many2one('res.partner', string='Sitio')
 
     @api.model
     def create(self, vals):
