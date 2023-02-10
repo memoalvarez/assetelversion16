@@ -9,7 +9,8 @@ class ProjectTask(models.Model):
 
     demo_task = fields.Boolean(string='Tarea de demo', default=False)
     demo_rejected = fields.Boolean(string='Demo Rechazado', default=False)
-    mrp_stage = fields.Boolean(string='Etapa de fabricación', default=False,)
+    mrp_stage = fields.Boolean(string='Etapa de fabricación', default=False)
+    service_registration_stage = fields.Boolean(string='Etapa de registro de servicio', default=False)
 
     demo_application_date = fields.Datetime('Fecha solicitud demo')
     demo_installation_date = fields.Datetime('Fecha instalacion demo')
