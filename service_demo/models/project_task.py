@@ -35,7 +35,7 @@ class ProjectTask(models.Model):
             result.name = '(#' + str(result.id) + ') - ' + result.name
             result.lead_id.message_post(body="Nueva solicitud de demo (#" + str(result.id) + "), esperando aprobación")
 
-            for line in result.project_id.users_to_notify:
+            for line in result.project_id.favorite_user_ids:
                 result.message_post(body="Buen día<br/><br/>Solicito la aprobación del Demo (#" + str(result.id) + ")<br/><br/>Descripción:<br/>" + str(result.description) +"<br/><br/>Saludos", partner_ids=[line.partner_id.id])
 
         if result.sale_order_id.opportunity_id.demo_task_ids:
