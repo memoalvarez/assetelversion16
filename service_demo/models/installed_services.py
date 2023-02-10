@@ -14,6 +14,7 @@ class InstalledServices(models.Model):
     demo_finish_date = fields.Datetime("Fecha finalización demo")
     sale_subscription_line = fields.Many2one('sale.order.line', string='Linea de suscripción')
     sale_subscription = fields.Many2one('sale.order', string='Suscripción')
+    project_task = fields.Many2one('project.task', string='Tarea de proyecto')
     
 
     #Guarda la actividad creada por si se requiere modificar o borrar
