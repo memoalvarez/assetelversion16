@@ -27,6 +27,7 @@ class ProjectTask(models.Model):
     sign_template = fields.Many2one('sign.template', string='Firma')
     sign_request = fields.Many2one('sign.request', string='Solicitud de firma')
     mrp_production = fields.Many2one('mrp.production', string='Orden de fabricación')
+    service_number = fields.Many2one('installed.services', string='Numero de servicio')
 
     @api.model
     def create(self, vals):
