@@ -21,7 +21,7 @@
 
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'mrp', 'installed_services', 'service_sizing', 'sign', 'service_demo'],
+    'depends': ['base', 'mrp', 'installed_services', 'service_sizing', 'sign',],
 
     # always loaded
     'data': [
