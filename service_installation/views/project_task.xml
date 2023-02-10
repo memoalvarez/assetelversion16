@@ -22,7 +22,7 @@
             <field name="mrp_stage" invisible="1"/>
             <field name="service_registration_stage" invisible="1"/>
             <button name="new_mrp" string="Nueva orden de fabricación" type="object" class="oe_highlight" attrs="{'invisible': ['|',('mrp_stage', '=', False), ('mrp_production', '!=', False)]}" groups="access_rights_assetel.proyecto_orden_fabricacion"/>
-            <button name="new_installed_service" string="Registrar Servicio" type="object" class="oe_highlight" attrs="{'invisible': ['|',('service_registration_stage', '=', False), ('service_number', '!=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
+            <button name="new_installed_service" string="Registrar Servicio" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', '|', ('demo_task', '!=', False), ('service_registration_stage', '=', False), ('service_number', '!=', False), ('active_demo_service', '!=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
             <button name="createandopen_signature_request" string="Generar reporte de servicio" type="object" class="oe_highlight" attrs="{'invisible':[('mrp_stage', '!=', True)]}"/>
         </xpath>
 
