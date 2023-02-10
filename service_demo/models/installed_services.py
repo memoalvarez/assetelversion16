@@ -13,6 +13,8 @@ class InstalledServices(models.Model):
     demo_installation_date = fields.Datetime("Fecha instalacion demo")
     demo_finish_date = fields.Datetime("Fecha finalización demo")
     sale_subscription_line = fields.Many2one('sale.order.line', string='Linea de suscripción')
+    sale_subscription = fields.Many2one('sale.order', string='Suscripción')
+    
 
     #Guarda la actividad creada por si se requiere modificar o borrar
     demo_activity_id = fields.Many2one('mail.activity', string='Actividad de demo')
