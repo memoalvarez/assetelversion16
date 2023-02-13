@@ -40,6 +40,7 @@
         </xpath>
 
         <xpath expr="//field[@name='stage_id']" position="before">
+          <field name="service_number" invisible="1"/>
           <button name="new_demo_service" string="Registrar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', ('service_registration_stage', '=', False), ('service_number', '!=', False), ('demo_task', '=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
           <button name="formalize_demo" string="Formalizar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', '|', ('demo_task', '!=', False), ('service_registration_stage', '=', False), ('service_number', '!=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
           <button name="authorize_demo" string="Autorizar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
