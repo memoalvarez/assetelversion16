@@ -55,9 +55,9 @@
           <button name="reject_demo" string="Rechazar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
         </xpath>
 
-        <xpath expr="//button[@name='new_installed_service']" position="attributes">
+        <!--<xpath expr="//button[@name='new_installed_service']" position="attributes">
             <attribute name="attrs">{'invisible': ['|', '|', '|', ('demo_task', '!=', False), ('service_registration_stage', '=', False), ('service_number', '!=', False), ('active_demo_service', '!=', False)]}</attribute>
-        </xpath>
+        </xpath>-->
 
     </field>
   </record>
