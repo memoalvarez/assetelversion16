@@ -19,7 +19,6 @@ class ProjectTask(models.Model):
 
     site = fields.Many2one('res.partner', string='Sitio', related='sale_line_id.site')
 
-    #FUNCIONA EN VERSION 16
     @api.model
     def create(self, vals):
         result = super(ProjectTask, self).create(vals)
@@ -44,12 +43,12 @@ class ProjectTask(models.Model):
                     Saludos.
                 </p>'''
 
-            for line in result.project_id.favorite_user_ids:
+            for line in result.project_id.users_to_notify:
                 result.message_post(body=text, partner_ids=[line.partner_id.id])
         
         return result
 
-    #FUNCIONA EN VERSION 16
+    
     def new_mrp(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
         action['views'] = [(self.env.ref('mrp.mrp_production_form_view').id, 'form')]
@@ -57,6 +56,7 @@ class ProjectTask(models.Model):
         'default_project_task': self.id, 'default_product_uom_qty': self.sale_line_id.product_uom_qty}
         action['target'] = 'new'
         return action
+
 
 
     def new_installed_service(self):
@@ -82,7 +82,7 @@ class ProjectTask(models.Model):
         return action
 
 
-    #FUNCIONA EN VERSION 16
+
     def action_view_mrp(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
 

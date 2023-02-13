@@ -9,7 +9,6 @@ class CrmLead(models.Model):
 
     demo_stage = fields.Boolean(string='Etapa de demo', default=False, related='stage_id.demo_stage')
 
-    #FUNCIONA EN VERSION 16
     def _compute_demo_ids(self):
         #Se cuentan todos los demos de la oportunidad actual#
         for reg in self:
@@ -21,7 +20,6 @@ class CrmLead(models.Model):
     demo_task_count = fields.Integer(string='Demo count', compute='_compute_demo_ids')
     demo_task_ids = fields.One2many('project.task', 'lead_id', string='Demos')
 
-    #FUNCIONA EN VERSION 16
     def new_demo(self):
         if self.partner_id:
             if self.sizing_task_count > 0:
@@ -41,7 +39,6 @@ class CrmLead(models.Model):
             raise exceptions.ValidationError('Necesitas registrar un cliente')
 
 
-    #FUNCIONA EN VERSION 16
     def action_view_task_demo(self):
         action = self.env.ref('service_demo.get_project_task_demo_view').read()[0]
 
