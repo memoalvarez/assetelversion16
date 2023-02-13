@@ -7,8 +7,8 @@ class InstalledServices(models.Model):
     _inherit = 'installed.services'
 
     project_task = fields.Many2one('project.task', string='Tarea de proyecto')
-    sale_subscription = fields.Many2one('sale.subscription', string='Suscripción')
-    sale_subscription_line = fields.Many2one('sale.subscription.line', string='Linea de suscripción')
+    sale_subscription = fields.Many2one('sale.order', string='Suscripción')
+    sale_subscription_line = fields.Many2one('sale.order.line', string='Linea de suscripción')
 
     quantity = fields.Float(string="Catidad")
 
