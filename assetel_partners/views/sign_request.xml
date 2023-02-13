@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sign_request_inherit_assetel_partners" model="ir.ui.view">
+    <field name="name">sign_request.inherit.assetel.partners</field>
+    <field name="model">sign.request</field>
+    <field name="inherit_id" ref="sign.sign_request_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//div[@class='oe_button_box']" position="inside">
+          <field name="afiliacion_id" invisible="1"/>
+          <button type="object" name="action_view_afilacion" class="oe_stat_button" icon="fa-sticky-note" attrs="{'invisible': [('afiliacion_id', '=', False)]}" string="Afiliación Partner"/>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

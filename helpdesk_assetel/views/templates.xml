@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <template id="helpdesk_assetel.ticket_submit" name="Helpdesk: Submit a Ticket (Inherited)" inherit_id="website_helpdesk_form.ticket_submit_form">
+            <xpath expr="//form/div[1]/div[2]" position="after">
+                <div class="form-group row form-field o_website_form_required_custom">
+                    <div class="col-lg-3 col-md-4 text-right">
+                        <label class="col-form-label" for="installed_service_id">Numero de Servicio</label>
+                    </div>
+                    <div class="col-lg-7 col-md-8">
+                        <select class='form-control o_website_form_input' name="installed_service_id" required="false">
+                            <option t-att-value="None">
+                                Seleccione...
+                            </option>
+                            <t t-foreach="installed_service_id" t-as="service_number">
+                                <option t-att-value="service_number.id">
+                                    <t t-esc="service_number.name"/>
+                                    <span>-</span>
+                                    <t t-esc="service_number.description"/>
+                                    <span>-</span>
+                                    <t t-esc="service_number.site.name"/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+
+            </xpath>
+        </template>
+    </data>
+</odoo>

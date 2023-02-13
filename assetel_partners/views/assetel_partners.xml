@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+  <!-- VISTA ARBOL PARA ASSETEL.PARTNERS -->
+
+  <record id="assetel_partners_tree" model="ir.ui.view">
+    <field name="name">assetel.partners.tree</field> 
+    <field name="model">assetel.partners</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="company_name"/>
+        <field name="stage_id"/>
+      </tree>
+    </field> 
+  </record>
+
+  <!-- VISTA QUICK_CREATE PARA  ASSETEL.PARTNERS-->
+
+  <record id="assetel_partners_quick_create" model="ir.ui.view"> 
+    <field name="name">assetel.partners.quick.create</field> 
+    <field name="model">assetel.partners</field>
+    <field name="arch" type="xml">
+      <form string="Nuevo partner">
+          <group>
+              <field name="company_name"/>
+              <field name="partner_name" required="1"/>
+              <field name="email" required="1"/>
+              <field name="phone"/>
+          </group>
+      </form>
+    </field> 
+  </record>
+
+  <!-- VISTA FORMULARIO PARA  ASSETEL.PARTNERS-->
+
+  <record id="assetel_partners_form" model="ir.ui.view"> 
+    <field name="name">assetel.partners.form</field> 
+    <field name="model">assetel.partners</field>
+    <field name="arch" type="xml">
+      <form string="Solicitud de alta">
+          <header>
+              <field name="stage_sign_in" invisible="1"/> 
+              <button name="new_survey_invite" string="Enviar Encuesta" type="object" class="oe_highlight" attrs="{'invisible': [('stage_sign_in', '!=', 'encuesta1')]}"/>
+              <button name="new_carta_preliminar" string="Enviar Carta Preliminar" type="object" class="oe_highlight" attrs="{'invisible': [('stage_sign_in', '!=', 'carta_preliminar')]}"/>
+              <button name="action_view_partner" string="Acceso a Portal Partner" type="object" class="oe_highlight" attrs="{'invisible': [('stage_sign_in', '!=', 'acceso_portal')]}"/>
+              <field name="stage_id" widget="statusbar" options="{'clickable': '1', 'fold_field': 'fold'}"/>
+          </header>
+          <sheet>
+              <div class="oe_button_box" name="button_box">
+                  <button type="object" name="action_view_surveys" class="oe_stat_button" icon="fa-question" attrs="{'invisible': [('survey_count', '=', 0)]}">
+                    <field string="Encuesta" name="survey_count" widget="statinfo"/>
+                  </button>
+                  <button type="object" name="action_view_sign_request" class="oe_stat_button" icon="fa-pencil" attrs="{'invisible':[('sign_request_count', '=', 0)]}">
+                    <field string="Firmas" name="sign_request_count" widget="statinfo"/>
+                  </button>
+                  <button type="object" name="action_view_partner" class="oe_stat_button" icon="fa-address-card" attrs="{'invisible': [('partner_id', '=', False)]}" string="Contacto"/>
+              </div>
+              <group>
+                <div class="oe_title pr-0">
+                  <h1 class="d-flex flex-row justify-content-between">
+                    <field name="name" class="o_task_name text-truncate" readonly="1" placeholder="Numero de Partner"/>
+                  </h1>
+                </div>
+                 <group>
+                  <field name="kanban_state" string=" " widget="state_selection" class="ml-auto"/>
+                </group>
+              </group>                        
+
+              <group>
+                <group>
+                  <field name="partner_id" invisible="1"/>
+                  <field name="company_name"/>
+                  <field name="partner_name"/>                  
+                  <field name="email" widget="email"/>
+                  <field name="phone" widget="phone"/>
+                </group>
+                <group>
+                  <field name="expediente_azul" widget="url"/>
+                </group>
+              </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+
+  <!-- VISTA KANBAN PARA  ASSETEL.PARTNERS-->
+
+  <record id="assetel_partners_kanban" model="ir.ui.view">
+    <field name="name">assetel.partners.kanban</field>
+    <field name="model">assetel.partners</field>
+    <field name="arch" type="xml">
+        <kanban default_group_by="stage_id" on_create="quick_create" quick_create_view="assetel_partners.assetel_partners_quick_create" examples="project" archivable="false">
+            <field name="color"/>
+            <field name="message_needaction_counter"/>
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click">
+                        <div class="oe_dropdown_kanban">
+                            <!-- dropdown menu -->
+                            <div class="o_dropdown_kanban dropdown">
+                              <a class="dropdown-toggle o-no-caret btn" role="button" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                  <span class="fa fa-ellipsis-v"/>
+                              </a>
+                              <div class="dropdown-menu" role="menu">
+                                  <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Editar</a></t>
+                                  <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Suprimir</a></t>
+                                  <ul class="oe_kanban_colorpicker" data-field="color"/>
+                              </div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                              <div class="o_kanban_record_top">
+                                <div>
+                                  <strong style="font-size: 140%"><field name="name"/></strong>
+                                </div>
+                              </div>
+                              <div class="o_kanban_record_body">
+                                Empresa:
+                                  <field name="company_name"/>
+                                  <br/>
+                                Nombre:
+                                  <field name="partner_name"/>
+                                  <br/>
+                                Correo:
+                                  <field name="email"/>
+                                  <br/>
+                                Teléfono:
+                                  <field name="phone"/>
+                                  <br/>
+                              </div>
+                              <div class="o_kanban_record_bottom">
+                                <div class="oe_kanban_bottom_left">
+                                  <field name="activity_ids" widget="kanban_activity"/>
+                                  <t t-if="record.message_needaction_counter.raw_value">
+                                      <span role="alert" class="oe_kanban_mail_new" title="Unread Messages"><i class="fa fa-comments" role="img" aria-label="Unread Messages"/><t t-raw="record.message_needaction_counter.raw_value"/></span>
+                                  </t>
+                                </div>
+                                <div class="oe_kanban_bottom_right" t-if="!selection_mode">
+                                      <field name="kanban_state" widget="state_selection"/>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+  </record>
+</odoo>

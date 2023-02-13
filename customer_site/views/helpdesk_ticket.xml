@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="helpdesk_ticket_form_inherit_customer_site" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.form.inherit.customer.site</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="contact_id" invisible="1"/>
+        <field name="site" domain="[('type', '=', 'site'), ('parent_id', '=?', contact_id), ('parent_id.empresarial_group_id', '=?', empresarial_group)]"/>
+      </xpath>
+
+      <xpath expr="//field[@name='partner_id']" position="attributes">
+        <attribute name="domain">[('type', '!=', 'site'), '|', ('empresarial_group_id', '=?', empresarial_group), ('parent_id.empresarial_group_id', '=?', empresarial_group)]</attribute>
+      </xpath>
+
+      
+
+    </field>
+  </record>
+
+</odoo>

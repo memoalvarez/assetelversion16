@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="helpdesk_ticket_inherit_customer_registration" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.inherit.customer.registration</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//div[@class='oe_button_box']" position="inside">
+          <field name="opportunity_id" invisible="1"/>
+          <field name="internal_support" invisible="1"/>
+          <button type="object" name="action_view_opportunity_id" class="oe_stat_button" icon="fa-asterisk" attrs="{'invisible': [('opportunity_id', '=', False)]}" string="Lead/Oportunidad"/>
+          <button type="object" name="action_view_surveys" class="oe_stat_button" icon="fa-question" attrs="{'invisible': [('survey_count', '=', 0)]}">
+            <field string="Encuesta" name="survey_count" widget="statinfo"/>
+          </button>
+        </xpath>
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+          <button name="new_survey_invite" string="Enviar encuesta" type="object" class="oe_highlight" attrs="{'invisible': [('opportunity_id', '=', False)]}"/>  
+        </xpath>
+
+    </field>
+  </record>
+
+  <record id="helpdesk_ticket_inherit_2_customer_registration" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.inherit.2.customer.registration</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="empresarial_group.helpdesk_ticket_form_inherit_empresarial_group"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='empresarial_group']" position="attributes">
+          <attribute name="attrs">{'invisible': [('internal_support', '=', True)]}</attribute>
+        </xpath>
+       
+    </field>
+  </record>
+
+  <record id="helpdesk_ticket_inherit_3_customer_registration" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.inherit.3.customer.registration</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="helpdesk_sale.helpdesk_ticket_view_form_inherit_helpdesk_invoicing"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='sale_order_id']" position="attributes">
+          <attribute name="attrs">{'invisible': [('internal_support', '=', True)]}</attribute>
+        </xpath>
+
+    </field>
+  </record>
+
+  <record id="helpdesk_ticket_inherit_4_customer_registration" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.inherit.4.customer.registration</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="customer_site.helpdesk_ticket_form_inherit_customer_site"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='site']" position="attributes">
+          <attribute name="attrs">{'invisible': [('internal_support', '=', True)]}</attribute>
+        </xpath>
+
+    </field>
+  </record>
+
+  <record id="helpdesk_ticket_inherit_5_customer_registration" model="ir.ui.view">
+    <field name="name">helpdesk.ticket.inherit.5.customer.registration</field>
+    <field name="model">helpdesk.ticket</field>
+    <field name="inherit_id" ref="installed_services.helpdesk_ticket_form_inherit_installed_services"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='installed_service_id']" position="attributes">
+          <attribute name="attrs">{'invisible': [('internal_support', '=', True)]}</attribute>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
+

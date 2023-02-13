@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="survey_invite_inherit_assetel_partners" model="ir.ui.view">
+    <field name="name">survey.invite.inherit.assetel.partners</field>
+    <field name="model">survey.invite</field>
+    <field name="inherit_id" ref="survey.survey_invite_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='survey_id']" position="before">
+            <field name="afiliacion_id" attrs="{'invisible': [('afiliacion_id', '=', False)]}" readonly="1"/>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
+

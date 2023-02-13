@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <!-- ESTO MODIFICA A LA TAREA DE PROYECTO -->
+
+  <record id="project_task_inherit_service_demo" model="ir.ui.view">
+    <field name="name">project.task.inherit.service.demo</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="project.view_task_form2"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//form[1]/sheet[1]/group[1]" position="after">
+            <group>
+              <group>
+                <field name="demo_task" invisible="1"/>
+                <field name="demo_service_life" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+                <field name="demo_application_date" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+              </group>
+              <group>
+                <field name="demo_installation_date" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+                <field name="demo_finish_date" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+              </group>
+            </group>
+        </xpath>
+
+        <xpath expr="//field[@name='email_from']" position="after">
+            <field name="product_id" domain="[('type', '=', 'service'), ('sale_ok', '=', True)]"/>
+            <field name="active_demo_service"/>
+        </xpath>
+
+        <xpath expr="//div[@class='oe_button_box']" position="after">
+            <field name="demo_rejected" invisible="1"/>
+            <!--div class="badge-pill badge-warning float-right" attrs="{'invisible': [('active_demo_service', '=', False)]}">Cliente con Demo</!div-->
+            <widget name="web_ribbon" text="Rechazado" bg_color="bg-danger" attrs="{'invisible': [('demo_rejected', '=', False)]}"/>
+        </xpath>
+
+        <xpath expr="//button[@name='action_open_parent_task']" position="before">
+            <button type="object" name="action_view_sizing" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('sizing_task_id_demo', '=', False)]}" string="Dimensionamiento"/>
+            <field name="sizing_task_id_demo" invisible="1"/>
+        </xpath>
+     
+    </field>
+  </record>
+
+  <record id="project_task_inherit_2_service_demo" model="ir.ui.view">
+    <field name="name">project.task.inherit.2.service.demo</field>
+    <field name="model">project.task</field>
+    <field name="inherit_id" ref="service_installation.project_task_inherit_service_installation"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+          <button name="new_demo_service" string="Registrar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', ('service_registration_stage', '=', False), ('service_number', '!=', False), ('demo_task', '=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
+          <button name="formalize_demo" string="Formalizar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', '|', ('demo_task', '!=', False), ('service_registration_stage', '=', False), ('service_number', '!=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
+          <button name="authorize_demo" string="Autorizar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
+          <button name="reject_demo" string="Rechazar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
+        </xpath>
+
+    </field>
+  </record>
+
+
+  <!-- VISTA ARBOL PARA PROJECT.TASK PARA DEMO -->
+  <!-- PARA PEDIR DESDE CRM -->
+
+  <record id="project_task_tree_demo" model="ir.ui.view">
+    <field name="name">project.task.tree.demo</field> 
+    <field name="model">project.task</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="partner_id"/>
+        <field name="product_id"/>
+        <field name="user_ids"/>
+      </tree>
+    </field> 
+  </record>
+
+    <!-- VISTA FORMULARIO PARA PROJECT.TASK PARA DEMO-->
+    <!-- PARA PEDIR DESDE CRM -->
+
+  <record id="project_task_form_demo" model="ir.ui.view"> 
+    <field name="name">project.task.from.crm</field> 
+    <field name="model">project.task</field>
+    <field name="arch" type="xml">
+      <form string="Demo">
+          <header>
+            <field name="active" invisible="1"/>
+            <button name="authorize_demo" string="Autorizar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
+            <button name="reject_demo" string="Rechazar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
+            <field name="stage_id" widget="statusbar"/>
+          </header>
+          <sheet>
+              <div class="badge-pill badge-warning float-right" attrs="{'invisible': ['|', ('demo_task', '=', False), ('active', '=', True)]}">Esperando aprobación</div>
+                <div class="oe_title">
+                  <h1>
+                    <field name="name" placeholder="Nombre" readonly="1"/>
+                  </h1>
+                </div>
+              <group></group>
+
+              <group>
+                <group>
+                  <field name="project_id" readonly="1"/>
+                </group>
+                <group>
+                  <field name="partner_id" readonly="1"/>
+                  <field name="user_ids" readonly="1" widget="many2many_tags"/>
+                </group>
+              </group>
+
+              <group>
+                <group>
+                  <field name="lead_id" invisible="1"/>
+                  <field name="order_id_demo" required="1" options="{'no_create': True, 'no_create_edit':True}" domain="[('opportunity_id', '=', lead_id)]"/>
+                  <field name="sale_order_line_demo" required="1" options="{'no_create': True, 'no_create_edit':True}" domain="[('order_id', '=', order_id_demo), ('product_id', '!=', False)]"/>
+                  <field name="sizing_task_id_demo" required="1" options="{'no_create': True, 'no_create_edit':True}" domain="[('lead_id', '=', lead_id), ('sizing_task', '=', True)]"/>
+                  <field name="product_id" invisible="1"/>
+                  <field name="demo_service_life" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+                </group>
+                <group>
+                  <field name="demo_task" invisible="1"/>
+                  <field name="demo_application_date" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+                  <field name="demo_installation_date" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+                  <field name="demo_finish_date" readonly="1" attrs="{'invisible': [('demo_task', '=', False)]}"/>
+                </group>
+              </group>
+
+              <group>
+                <field name="description"/>
+              </group>
+          </sheet>
+          <div class="oe_chatter">
+            <field name="message_follower_ids" widget="mail_followers"/>
+            <field name="activity_ids" widget="mail_activity"/>
+            <field name="message_ids" widget="mail_thread"/>
+          </div>
+      </form>
+    </field> 
+  </record>
+
+  <record id="get_project_task_demo_view" model="ir.actions.act_window">
+      <field name="name">Demo</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">project.task</field>
+      <field name="view_mode">form</field>
+      <field name="view_id" eval="project_task_form_demo"/>
+  </record>
+
+</odoo>

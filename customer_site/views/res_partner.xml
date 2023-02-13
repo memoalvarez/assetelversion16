@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="res_partner_inherit_customer_site" model="ir.ui.view">
+    <field name="name">res.partner.customer.site</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='vat']" position="before">
+        <field name="partner_latitude" attrs="{'invisible': [('type', '!=', 'site')]}"/>
+        <field name="partner_longitude" attrs="{'invisible': [('type', '!=', 'site')]}"/>
+      </xpath>
+
+      <xpath expr="//form[1]/sheet[1]/notebook[1]/page[1]/field[@name='child_ids']/form[1]/sheet[1]/group[2]/field[@name='comment']" position="before">
+        <field name="partner_latitude" attrs="{'invisible': [('type', '!=', 'site')]}"/>
+        <field name="partner_longitude" attrs="{'invisible': [('type', '!=', 'site')]}"/>
+      </xpath>
+      
+      <xpath expr="//field[@name='email']" position="attributes">
+        <attribute name="attrs">{'required': [('type', '!=', 'invoice')]}</attribute>
+      </xpath>
+
+      <xpath expr="//field[@name='phone']" position="attributes">
+        <attribute name="attrs">{'required': [('type', '!=', 'invoice')]}</attribute>
+      </xpath>
+
+    </field>
+  </record>
+
+  <record id="res_partner_inherit_customer_site_2" model="ir.ui.view">
+    <field name="name">res.partner.customer.site.2</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="purchase.view_partner_property_form"/>
+    <field name="arch" type="xml">
+
+      <xpath expr="//field[@name='property_purchase_currency_id']" position="after">
+        <field name="credit_limit"/>
+      </xpath>
+
+    </field>
+  </record>
+
+</odoo>

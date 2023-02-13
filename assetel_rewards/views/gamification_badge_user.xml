@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="badge_user_kanban_view_inherit_gamification_badge" model="ir.ui.view">
+    <field name="name">badge.user.kanban.view.inherit.gamification.badge</field>
+    <field name="model">gamification.badge.user</field>
+    <field name="inherit_id" ref="gamification.badge_user_kanban_view"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//div[contains(@class, 'oe_kanban_details')]" position="inside">
+                <a t-if="record.puntos.raw_value" style="margin-right: 10px"
+                    name="o"><field name="puntos"/> puntos</a>
+        </xpath>
+    </field>
+  </record>
+
+  <record id="gamification_badge_user_tree" model="ir.ui.view">
+        <field name="name">gamification.badge.user.tree</field> 
+        <field name="model">gamification.badge.user</field>
+        <field name="arch" type="xml">
+            
+          <tree>
+            <field name="user_id"/>
+            <field name="badge_id"/>
+            <field name="comment"/>
+            <field name="puntos"/>
+          </tree>
+    
+        </field> 
+    </record>
+</odoo>

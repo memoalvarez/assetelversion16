@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="my_partner_portal" name="Partner portal menu" inherit_id="portal.user_dropdown">
+        <xpath expr="//a[@id='o_logout']" position="before">
+            <a href="/my/partner" role="menuitem" class="dropdown-item" t-if="user_id._is_partner()">Portal de Partner</a>
+        </xpath>
+    </template>
+
+
+    <template id="partner_portal_website" name="Partner portal website">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure oe_empty">
+
+                <section class="s_cover parallax s_parallax_is_fixed pt96 pb96 s_parallax_no_overflow_hidden bg-black-25" data-scroll-background-ratio="1" data-name="Cover" style="background-image: none; margin-bottom: 40px;">
+                    <span class="s_parallax_bg oe_img_bg oe_custom_bg" style="background-image: url(/partner_portal/static/img/portada.jpg); background-position: 50% 80%;"/>
+                    <div class="container">
+                    <div class="row s_nb_column_fixed">
+                        <div class="s_title col-lg-6" data-name="Title">
+                        <h1 class="s_title_thin" style="font-size: 62px; text-align: center;">
+                            <font style="color: rgb(255, 255, 255);">Portal de Partner</font>
+                        </h1>
+                        </div>
+                    </div>
+                    </div>
+                </section>
+
+                <div class="container">
+                    <div class="row">
+  
+                        <div class="col-lg-3">
+                            <div class="card shadow" style="margin-bottom: 50px; height: 428px">
+                                <!--<img class="card-img-top" src="/partner_portal/static/img/test.jpg" alt="Foto"/>-->
+                                <img class="card-img-top" t-att-src="'data:image/png;base64,%s' % to_text(user_id.partner_id.image_1920)"/>
+                                <div class="card-body">
+                                    <h4 class="card-title" style="color: #f28a00;"><span t-field="user_id.partner_id.name"/></h4>
+                                    <p class="card-text" style="font-size: 1.2em; color: #1d3660;"><span t-field="user_id.partner_id.email"/></p>
+                                    <a href="/my/account" class="btn btn-outline-delta">Editar perfil</a>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col">
+                            <div style="margin-bottom: 53px; color: #f28a00;">
+                                <h5>Nivel de Partner</h5>
+                                
+                                <div class="progress shadow" style="height: 30px; margin-bottom: 10px;">
+                                <t t-if="user_id._is_silver()">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:33%"/>
+                                </t>
+                                <t t-if="user_id._is_golden()">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:66%"/>
+                                </t>
+                                <t t-if="user_id._is_platinum()">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:100%"/>
+                                </t>
+
+
+                                    <!--<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:66%"/>-->
+                                </div>
+                                <div>
+                                    <div style="padding-left: 12%; width:33%; float: left; color: #1d3660;">SILVER</div>
+                                    <div style="padding-left: 12%; width:33%; float: left; color: #1d3660;">GOLD</div>
+                                    <div style="padding-left: 12%; width:34%; float: left; color: #1d3660;">PLATINUM</div>
+                                </div>
+                            </div>
+                            
+                            <div class="card shadow" style="margin-bottom: 50px; height: 315px">
+                                <!-- Card Header -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #1d3660;">
+                                    <h6 class="m-0" style="font-size: 1.4em; color: white;">
+                                        APRENDE
+                                    </h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <!-- Card Header -->
+                                                <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0" style="font-size: 1.3em; color: #f28a00;">
+                                                        Conocimiento de socios
+                                                    </h6>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="py-3" style="font-size: 1.2em; color: #1d3660;">
+                                                    <p>Descubre nuestro nuevo portal de aprendizaje partner</p>
+                                                </div>
+                                                <!-- Card Footer -->
+                                                <div class="py-3">
+                                                    <a href="/slides/all" class="btn btn-outline-delta">
+                                                        Comenzar
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <!-- Card Header -->
+                                                <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0" style="font-size: 1.3em; color: #f28a00;">
+                                                        Certificaciones
+                                                    </h6>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="py-3" style="font-size: 1.2em; color: #1d3660;">
+                                                    <p>Consulta los cursos y certificaciones que Assetel tiene para ti</p>
+                                                </div>
+                                                <!-- Card Footer -->
+                                                <div class="py-3">
+                                                    <a href="/slides/all?slide_type=certification" class="btn btn-outline-delta">
+                                                        Más información
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="container">
+                    <div class="row">
+                      
+                        <div class="col-lg-6">
+                            <div class="card shadow" style="margin-bottom: 50px; height: 315px">
+                                <!-- Card Header -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #1d3660;">
+                                    <h6 class="m-0" style="font-size: 1.4em; color: white;">
+                                        TU NEGOCIO
+                                    </h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div>
+                                                <!-- Card Header -->
+                                                <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0" style="font-size: 1.3em; color: #f28a00;">
+                                                        Leads
+                                                    </h6>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="py-4">
+                                                    <span style="font-size: 2.4em; color: #1d3660;">
+                                                        <t t-esc="user_id._get_conteo_lead()"/> Leads
+                                                    </span>
+                                                </div>
+                                                <!-- Card Footer -->
+                                                <div class="py-3">
+                                                    <a href="/my/opportunities" class="btn btn-outline-delta">Mis leads</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="card shadow" style="margin-bottom: 50px; height: 315px">
+                                <!-- Card Header -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #1d3660;">
+                                    <h6 class="m-0" style="font-size: 1.4em; color: white;">
+                                        PARTNERSHIP
+                                    </h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div>
+                                                <!-- Card Header -->
+                                                <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                                    <h6 class="m-0" style="font-size: 1.3em; color: #f28a00;">
+                                                        Programa Partners
+                                                    </h6>
+                                                </div>
+                                                <!-- Card Body -->
+                                                <div class="py-3" style="font-size: 1.2em; color: #1d3660;">
+                                                    <p>Conoce nuestro programa Partners Assetel, y empecemos a crecer juntos</p>
+                                                </div>
+                                                <!-- Card Footer -->
+                                                <div class="py-3">
+                                                    <a href="/my/partner" class="btn btn-outline-delta">
+                                                        Más información
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+                <div class="container">
+                    <div class="row">
+                    <div class="col-lg-7">
+                        <div class="card shadow" style="margin-bottom: 50px; height: 315px">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #1d3660;">
+                            <h6 class="m-0" style="font-size: 1.4em; color: white;">
+                                MARKETING
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-lg-6">
+                                <div>
+                                <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0" style="font-size: 1.3em; color: #f28a00;">
+                                        Identidad de marca
+                                    </h6>
+                                </div>
+                                <div class="py-3" style="font-size: 1.2em; color: #1d3660;">
+                                    <p>Tiene los derechos para utilizar la marca registrada de Assetel</p>
+                                </div>
+                                <div class="py-3">
+                                    <a href="/my/partner" class="btn btn-outline-delta">Manual de Identidad</a>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div>
+                                <div class="py-4">
+                                    <img style="width: 100%; object-fit: contain;" src="/partner_portal/static/img/AssetelLogo.png" alt="Logo"/>
+                                </div>
+                                <div class="py-3" style="margin-top: 8.5px;">
+                                    <a href="/slides/all" class="btn btn-outline-delta" target="_blank">SVG</a>
+                                    <a href="/partner_portal/static/img/AssetelLogo.png" class="btn btn-outline-delta" target="_blank">PNG</a>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow" style="margin-bottom: 50px; height: 315px">
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" style="background-color: #1d3660;">
+                            <h6 class="m-0" style="font-size: 1.4em; color: white;">
+                                PÓNGASE EN CONTACTO
+                            </h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                            <div class="col-lg-7">
+                                <div>
+                                <div class="py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0" style="font-size: 1.3em; color: #f28a00;">
+                                    <span><t t-esc="user_id._get_user_id()"/></span>
+                                    </h6>
+                                </div>
+                                <div class="py-3" style="font-size: 1.2em; color: #1d3660;">
+                                    <span><t t-esc="user_id._get_phone()"/></span>
+                                    <span><t t-esc="user_id._get_email()"/></span>
+                                </div>
+                                <div class="py-3" style="margin-top: 14px;">
+                                    <a href="/contactus" class="btn btn-outline-delta">Contáctenos</a>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5 pb8">
+                                <img class="card-img-top" t-att-src="'data:image/png;base64,%s' % to_text(user_id._get_image())"/>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

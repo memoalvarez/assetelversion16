@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="gamification_badge_user_wizard_inherit_gamification_badge" model="ir.ui.view">
+    <field name="name">gamification.badge.user.wizard.inherit.gamification.badge</field>
+    <field name="model">gamification.badge.user.wizard</field>
+    <field name="inherit_id" ref="gamification.view_badge_wizard_grant"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='comment']" position="after">
+          <field name="puntos" colspan="4" nolabel="1" placeholder="Captura el puntaje"/>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="crm_lead_inherit_service_demo" model="ir.ui.view">
+    <field name="name">crm.lead.inherit.service.demo</field>
+    <field name="model">crm.lead</field>
+    <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='stage_id']" position="before">
+            <field name="demo_stage" invisible="1"/>
+            <field name="quotation_count" invisible="1"/>
+            <button name="new_demo" string="Solicitar demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('quotation_count', '=', 0), ('demo_stage', '=', False)]}" groups="access_rights_assetel.crm_solicitar_demo"/>
+        </xpath>
+
+        <xpath expr="//button[@name='action_schedule_meeting']" position="before">
+          <button type="object" name="action_view_task_demo" class="oe_stat_button" icon="fa-eye" attrs="{'invisible': [('demo_task_count', '=', 0)]}">
+            <field string="Demos" name="demo_task_count" widget="statinfo"/>
+          </button>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
+

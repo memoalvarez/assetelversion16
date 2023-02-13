@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sale_subscription_inherit_empresarial_group" model="ir.ui.view">
+    <field name="name">sale.subscription.inherit.empresarial.group</field>
+    <field name="model">sale.subscription</field>
+    <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='partner_id']" position="before">
+          <field name="empresarial_group"/>
+        </xpath>
+
+        <xpath expr="//field[@name='partner_id']" position="attributes">
+          <attribute name="domain">[('type', '=', 'invoice'), ('is_company', '=', True), ('parent_id.empresarial_group_id', '=?', empresarial_group)]</attribute>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>

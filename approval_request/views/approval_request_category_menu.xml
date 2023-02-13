@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="get_approval_request_category_view" model="ir.actions.act_window">
+        <field name="name">Categorías de aprobación</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">approval.request.category</field>
+        <field name="view_mode">tree</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea una nueva categoría de aprobación
+            </p>
+        </field>
+    </record>
+
+    <record id="approval_request.approval_request_category_menu" model="ir.ui.menu">
+        <field name="action" ref="approval_request.get_approval_request_category_view"/>
+        <field name="active" eval="True"/>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+        <field name="name">Categorías de aprobación</field>
+        <field name="parent_id" ref="approvals.approvals_menu_config"/>
+        <field name="sequence">20</field>
+        <field name="web_icon" eval="False"/>
+    </record>
+</odoo>

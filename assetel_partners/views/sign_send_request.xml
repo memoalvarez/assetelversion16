@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="sign_send_request_inherit_assetel_partners" model="ir.ui.view">
+    <field name="name">sign_send_request.inherit.assetel.partners</field>
+    <field name="model">sign.send.request</field>
+    <field name="inherit_id" ref="sign.sign_send_request_view_form"/>
+    <field name="arch" type="xml">
+
+        <xpath expr="//field[@name='message']" position="after">
+            <field name="afiliacion_id" readonly="1"/>
+        </xpath>
+
+    </field>
+  </record>
+
+</odoo>
