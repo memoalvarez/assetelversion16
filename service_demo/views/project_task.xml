@@ -38,15 +38,6 @@
             <button type="object" name="action_view_sizing" class="oe_stat_button" icon="fa-tasks" attrs="{'invisible': [('sizing_task_id_demo', '=', False)]}" string="Dimensionamiento"/>
             <field name="sizing_task_id_demo" invisible="1"/>
         </xpath>
-     
-    </field>
-  </record>
-
-  <record id="project_task_inherit_2_service_demo" model="ir.ui.view">
-    <field name="name">project.task.inherit.2.service.demo</field>
-    <field name="model">project.task</field>
-    <field name="inherit_id" ref="service_installation.project_task_inherit_service_installation"/>
-    <field name="arch" type="xml">
 
         <xpath expr="//field[@name='stage_id']" position="before">
           <button name="new_demo_service" string="Registrar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', '|', ('service_registration_stage', '=', False), ('service_number', '!=', False), ('demo_task', '=', False)]}" groups="access_rights_assetel.proyecto_registro_servicio"/>
@@ -54,7 +45,7 @@
           <button name="authorize_demo" string="Autorizar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
           <button name="reject_demo" string="Rechazar Demo" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('active', '=', True), ('demo_task', '=', False)]}" groups="access_rights_assetel.crm_aprobacion_demo"/>
         </xpath>
-
+     
     </field>
   </record>
 
