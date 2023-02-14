@@ -23,11 +23,11 @@ class MrpProduction(models.Model):
         self.ensure_one()
         #action = self.env.ref('project.act_project_project_2_project_task_all').read()[0]
         action = {'type': 'ir.actions.act_window_close'}
-        task_projects = self.tasks_ids.mapped('project_task')
+        task_projects = self.project_task.mapped('project_task')
         if len(task_projects) == 1:  # redirect to task of the project (with kanban stage, ...)
             action = self.with_context(active_id=task_projects.id).env['ir.actions.actions']._for_xml_id(
                 'project.act_project_project_2_project_task_all')
-            action['domain'] = [('id', 'in', self.tasks_ids.ids)]
+            action['domain'] = [('id', 'in', self.project_task.id)]
 
         if self.project_task:
             action['views'] = [(self.env.ref('project.view_task_form2').id, 'form')]
