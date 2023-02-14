@@ -24,7 +24,7 @@ class MrpProduction(models.Model):
         action = self.env.ref('project.act_project_project_2_project_task_all').read()[0]
         #action = self.with_context(active_id=task_projects.id).env['ir.actions.actions']._for_xml_id(
                 #'project.act_project_project_2_project_task_all')
-        #action['domain'] = [('id', 'in', self.tasks_ids.ids)]
+        action['domain'] = [('id', 'in', self.project_task.id)]
 
         if self.project_task:
             action['views'] = [(self.env.ref('project.view_task_form2').id, 'form')]
