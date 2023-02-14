@@ -23,7 +23,7 @@ class MrpProduction(models.Model):
         self.ensure_one()
         #action = self.env.ref('project.act_project_project_2_project_task_all').read()[0]
         action = {'type': 'ir.actions.act_window_close'}
-        task_projects = self.project_task
+        task_projects = self.project_task.mrp_production.mapped('project_task')
         if len(task_projects) == 1:  # redirect to task of the project (with kanban stage, ...)
             action = self.with_context(active_id=task_projects.id).env['ir.actions.actions']._for_xml_id(
                 'project.act_project_project_2_project_task_all')
