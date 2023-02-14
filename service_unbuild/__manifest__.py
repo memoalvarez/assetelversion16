@@ -26,7 +26,6 @@
     # always loaded
     'data': [
         'views/installed_services.xml',
-        'views/project_project.xml',
         'views/project_task_type.xml',
         'views/project_task.xml',
         'views/res_config_settings.xml',
