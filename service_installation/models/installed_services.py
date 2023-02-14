@@ -2,6 +2,7 @@
 import logging
 
 from odoo import models, api, fields, exceptions
+_logger = logging.getLogger(__name__)
 
 class InstalledServices(models.Model):
     _inherit = 'installed.services'
