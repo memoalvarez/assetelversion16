@@ -20,6 +20,7 @@ class MrpProduction(models.Model):
         return result
 
     def action_view_project_task(self):
+        self.ensure_one()
         action = self.env.ref('project.act_project_project_2_project_task_all').read()[0]
 
         if self.project_task:

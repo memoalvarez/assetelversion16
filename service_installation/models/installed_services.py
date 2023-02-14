@@ -17,8 +17,7 @@ class InstalledServices(models.Model):
     def create(self, vals):
         result = super(InstalledServices, self).create(vals)
 
-        #Se registra el numero de servicio en la tarea desde el que se creo
-        #y se registra entrega en SO
+        #Se registra el numero de servicio en la tarea desde el que se creo y se registra entrega en SO
         if result.project_task:
             result.project_task.service_number = result.id
             result.project_task.register_equipment()
