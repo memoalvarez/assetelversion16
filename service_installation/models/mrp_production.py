@@ -21,7 +21,7 @@ class MrpProduction(models.Model):
 
     def action_view_project_task(self):
         self.ensure_one()
-        action = self.env.ref('project.act_project_project_2_project_task_all').read()[0]
+        action = self.env.ref('project.view_task_kanban').read()[0]
 
         if self.project_task:
             action['views'] = [(self.env.ref('project.view_task_form2').id, 'form')]
