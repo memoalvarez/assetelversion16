@@ -26,7 +26,6 @@
     # always loaded
     'data': [
         'views/project_task.xml',
-        'views/res_config_settings.xml',
         'views/sale_subscription.xml',
     ],
 }
