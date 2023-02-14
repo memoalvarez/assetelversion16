@@ -48,7 +48,7 @@ class ProjectTask(models.Model):
         
         return result
 
-    
+    #FUNCIONA EN VERSION 16
     def new_mrp(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
         action['views'] = [(self.env.ref('mrp.mrp_production_form_view').id, 'form')]
