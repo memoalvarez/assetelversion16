@@ -3,7 +3,6 @@ import logging
 import base64
 
 from odoo import models, api, fields
-from odoo.tools import pdf
 _logger = logging.getLogger(__name__)
 
 class ProjectTask(models.Model):
@@ -132,7 +131,7 @@ class ProjectTask(models.Model):
 
     def pdf_generator(self):
         pdf = self.env['ir.actions.report']._render_qweb_pdf("service_installation.report_project_task", self.id)[0]
-        b64_pdf = base64.b64encode(pdf[0])
+        b64_pdf = base64.b64encode(pdf).decode()
         # save pdf as attachment
         name = "Reporte de servicio" + str(self.id)
         return self.env['ir.attachment'].create({
