@@ -130,7 +130,7 @@ class ProjectTask(models.Model):
 
 
     def pdf_generator(self):
-        pdf = self.env.ref('service_installation.report_project_task')._render_qweb_pdf(self.ids)
+        pdf = self.env.ref('service_installation.report_project_task')._render_qweb_pdf(self, report_ref, res_ids=None, data=None)
         b64_pdf = base64.b64encode(pdf[0])
         # save pdf as attachment
         name = "Reporte de servicio" + str(self.id)
