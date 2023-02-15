@@ -58,7 +58,7 @@ class ProjectTask(models.Model):
         return action
 
 
-
+    #FUNCIONA EN VERSION 16
     def new_installed_service(self):
         if self.mrp_production:
             note = '<p>Servicio creado desde:</p><p>Tarea.- ' + self.name + '</p>' + '<p>Orden de fabricacion.- ' + self.mrp_production.name + '</p>'    
@@ -82,7 +82,7 @@ class ProjectTask(models.Model):
         return action
 
 
-
+    #FUNCIONA EN VERSION 16
     def action_view_mrp(self):
         action = self.env.ref('mrp.mrp_production_action').read()[0]
 
@@ -92,7 +92,7 @@ class ProjectTask(models.Model):
         return action
 
 
-
+    #FUNCIONA EN VERSION 16
     def action_view_installed_service(self):
         action = self.env.ref('installed_services.get_installed_services_view').read()[0]
 
@@ -130,7 +130,7 @@ class ProjectTask(models.Model):
 
 
     def pdf_generator(self):
-        pdf = self.env.ref('service_installation.report_project_task').render_qweb_pdf(self.ids)
+        pdf = self.env.ref('service_installation.report_project_task')._render_qweb_pdf(self.ids)
         b64_pdf = base64.b64encode(pdf[0])
         # save pdf as attachment
         name = "Reporte de servicio" + str(self.id)
