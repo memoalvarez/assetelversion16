@@ -102,6 +102,7 @@ class ProjectTask(models.Model):
         return action
 
 
+    #FUNCIONA EN VERSION 16
     def action_view_sign_templates(self):
         self.ensure_one()
         return {
@@ -128,7 +129,7 @@ class ProjectTask(models.Model):
                     line2.lot_id.service_number = self.service_number
 
 
-
+    #FUNCIONA EN VERSION 16
     def pdf_generator(self):
         pdf = self.env['ir.actions.report']._render_qweb_pdf("service_installation.report_project_task", self.id)[0]
         b64_pdf = base64.b64encode(pdf).decode()
@@ -144,6 +145,7 @@ class ProjectTask(models.Model):
             'mimetype': 'application/pdf'
         })
 
+    #FUNCIONA EN VERSION 16
     def createandopen_signature_request(self):
         if self.sign_template:
             self.sign_template.project_task = False
