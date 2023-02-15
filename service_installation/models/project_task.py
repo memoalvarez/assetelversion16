@@ -3,6 +3,7 @@ import logging
 import base64
 
 from odoo import models, api, fields
+from odoo.tools import pdf
 _logger = logging.getLogger(__name__)
 
 class ProjectTask(models.Model):
