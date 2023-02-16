@@ -8,9 +8,7 @@
     <field name="arch" type="xml">
 
         <xpath expr="//field[@name='privacy_visibility']" position="after">
-          <group>
             <field name="users_to_notify"/>
-          </group>
         </xpath>
 
      
