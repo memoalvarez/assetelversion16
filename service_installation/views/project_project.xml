@@ -8,7 +8,9 @@
     <field name="arch" type="xml">
 
         <xpath expr="//group[@name='extra_settings']" position="inside">
+          <group>
             <field name="users_to_notify"/>
+          </group>
         </xpath>
 
      

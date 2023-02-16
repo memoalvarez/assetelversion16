@@ -8,6 +8,7 @@ class SignRequest(models.Model):
 
     project_task = fields.Many2one('project.task', string='Tarea de proyecto')
 
+    #FUNCIONA EN VERSION 16
     @api.model
     def create(self, vals):
         result = super(SignRequest, self).create(vals)
@@ -18,6 +19,7 @@ class SignRequest(models.Model):
         return result
 
 
+    #FUNCIONA EN VERSION 16
     def action_view_task_service_installation(self):
         self.ensure_one()
         return {
