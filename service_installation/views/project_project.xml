@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
 
-        <xpath expr="//field[@name='privacy_visibility']" position="after">
+        <xpath expr="//div[@name='alias_def']" position="after">
             <field name="users_to_notify"/>
         </xpath>
 
