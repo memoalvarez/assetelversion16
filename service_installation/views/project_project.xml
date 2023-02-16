@@ -7,7 +7,7 @@
     <field name="inherit_id" ref="project.edit_project"/>
     <field name="arch" type="xml">
 
-        <xpath expr="//div[@name='alias_def']" position="after">
+        <xpath expr="//field[@name='alias_contact']" position="after">
           <group>
             <field name="users_to_notify"/>
           </group>
