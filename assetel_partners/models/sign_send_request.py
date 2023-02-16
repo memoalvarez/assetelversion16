@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, SUPERUSER_ID, api, _ 
+from odoo import models, fields, SUPERUSER_ID, api, _, Command
 
 class SignSendRequest(models.TransientModel):
     _inherit = 'sign.send.request'
