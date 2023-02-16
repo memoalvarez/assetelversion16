@@ -8,9 +8,7 @@
     <field name="arch" type="xml">
 
         <xpath expr="//field[@name='alias_contact']" position="after">
-          <group>
             <field name="users_to_notify"/>
-          </group>
         </xpath>
 
      
