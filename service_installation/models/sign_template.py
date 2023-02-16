@@ -9,6 +9,7 @@ class SignTemplate(models.Model):
     project_task = fields.Many2one('project.task', string='Tarea de proyecto')
     hide_template = fields.Boolean(string='Ocultar plantilla', default=False)
 
+    #FUNCIONA EN VERSION 16
     def action_view_project_task(self):
         self.ensure_one()
         return {

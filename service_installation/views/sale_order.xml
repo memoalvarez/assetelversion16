@@ -8,7 +8,7 @@
     <field name="arch" type="xml">
 
       <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
-        <field name="empresarial_group" invisible="0"/>
+        <field name="empresarial_group" invisible="1"/>
         <field name="service_number" domain="[('empresarial_group', '=?', empresarial_group)]"/>
       </xpath>
 
