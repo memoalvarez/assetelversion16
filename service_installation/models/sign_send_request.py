@@ -7,6 +7,7 @@ _logger = logging.getLogger(__name__)
 class SignSendRequest(models.TransientModel):
     _inherit = 'sign.send.request'
 
+    #FUNCIONA EN VERSION 16
     @api.model
     def default_get(self, fields):
         res = super(SignSendRequest, self).default_get(fields)
